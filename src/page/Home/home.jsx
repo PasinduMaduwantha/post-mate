@@ -6,7 +6,7 @@ export default function Home() {
     <div className="home-background">
       <div className='home-background-wrap'>
         <h2 className="home-title">
-          Sign in to your account
+          LogIn to your Account
         </h2>
         <AuthForm />
       </div>

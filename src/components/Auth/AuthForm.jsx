@@ -1,14 +1,16 @@
-// 'use client';
+
 import Button from '../Buttons/Buttons';
 import Input from '../Inputs/input';
 import { useCallback, useState } from 'react';
 import { useForm , FieldValues, SubmitHandler} from 'react-hook-form';
-// import AuthSocialButton from './AuthSocialButton';
-// import {BsGithub, BsGoogle} from 'react-icons/bs'
+import {Navigate, useNavigate} from 'react-router-dom';
+
 import './AuthForm.css'
 
 
 const AuthForm = () => {
+    const navigate = useNavigate()
+
     const [Varient, setVarient] = useState('LOGIN')
     const [isLoading, setIsLoading] = useState(false)
 
@@ -37,18 +39,39 @@ const AuthForm = () => {
 
         if (Varient === 'REGISTER') {
             // Axios Register
+            navigateToRegister()
         }
         if (Varient === 'LOGIN') {
             // NextAuth Signin
+            if (data.isAdmin) {
+                navigateToAdminDashboard()
+            } else {
+                navigateToUserDashboard()
+            }
         }
     }
+
+    const navigateToRegister = ()=> {
+        navigate('/register')
+    }
+
+    const navigateToUserDashboard = ()=> {
+        navigate('/userhome')
+    }
+
+    const navigateToAdminDashboard = ()=> {
+        navigate('/admindashboard')
+    }
+
+
+
 
     return ( 
         <div className="auth-background" >
             <div
             className="custom-card">
                 <form style={{"margin-top": "1.5rem"}}
-                onSubmit={(onSubmit)}
+                onSubmit={handleSubmit(onSubmit)}
                 >
                     {Varient === 'REGISTER' && (
                     <Input 
@@ -61,9 +84,9 @@ const AuthForm = () => {
                     />
                     )}
                     <Input 
-                        id='email'
-                        type='email'
-                        label='Email'
+                        id='username'
+                        type='text'
+                        label='User Name'
                         register={register}
                         errors={errors}
                         disabled={isLoading}
@@ -81,6 +104,7 @@ const AuthForm = () => {
                         disabled={isLoading}
                         fullWidth
                         type='submit'
+                        
                         >
                             {Varient === 'LOGIN' ? 'Sign In' : 'Register'}
                         </Button>
@@ -88,7 +112,7 @@ const AuthForm = () => {
                 </form>
                 <div className="custom-lower">
                     <div>
-                        {Varient === 'LOGIN' ? "New to Messenger?" : 'Already have an account?'}
+                        {Varient === 'LOGIN' ? "Don't have an account?" : 'Already have an account?'}
                     </div>
                     <div
                     onClick={toggleVarient}
