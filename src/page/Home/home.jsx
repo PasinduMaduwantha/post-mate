@@ -13,7 +13,7 @@ import "./home.css";
 export default function Home() {
   return (
     <>
-      <NavBar />
+      {/* <NavBar /> */}
       <div className='home-background'>
         <div className='home-background-wrap'>
           <AuthForm />

@@ -13,9 +13,18 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import logo from "../../images/logo.png";
+import { Link } from "react-router-dom";
 
 const pages = ["Home", "About Us", "Services", "Contact Us", "Help"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
+
+const pageToUrlMap = {
+  "Home": "/home",
+  "About Us": "/about",
+  "Services": "/services",
+  "Contact Us": "/contact",
+  "Help": "/help",
+};
 
 function NavBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -44,17 +53,29 @@ function NavBar() {
     >
       <Container maxWidth='xl'>
         <Toolbar disableGutters>
-          <img style={{ maxWidth: 120 }} src={logo} />
+          <Link to='/'>
+            <img style={{ maxWidth: 120 }} src={logo} />
+          </Link>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {pages.map((page) => (
-              <Button
+            {/* {pages.map((page) => (
+              <Button 
                 key={page}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: "black", display: "block" }}
-              >
+                >
                 {page}
               </Button>
-            ))}
+            ))} */}
+          {Object.entries(pageToUrlMap).map(([buttonText, url]) => (
+            <Link key={url} to={url}>
+              <Button
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, color: "black", display: "block" }}
+              >
+                {buttonText}
+              </Button>
+            </Link>
+          ))}  
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
