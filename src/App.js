@@ -9,24 +9,25 @@ import About from './page/AboutUs/About';
 import Help from './page/Help/Help';
 import Contact from './page/ContactUs/Contact';
 import Services from './page/Services/Services';
+import SignUpForm from './components/Auth/SignUpForm';
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/register" element={<Register/>}>
+        <Route path="/register" element={<Register />}>
         </Route>
-        <Route path="/userhome" element={<UserHome/>}>
+        <Route path="/userhome" element={<UserHome />}>
         </Route>
-        <Route path="/about" element={<About/>}>
+        <Route path="/about" element={<About />}>
         </Route>
-        <Route path="/help" element={<Help/>}>
+        <Route path="/help" element={<Help />}>
         </Route>
-        <Route path="/contact" element={<Contact/>}>
+        <Route path="/contact" element={<Contact />}>
         </Route>
-        <Route path="/services" element={<Services/>}>
+        <Route path="/services" element={<Services />}>
         </Route>
-        <Route path="/" element={<Home/>}>
+        <Route path="/" element={<Home />}>
         </Route>
       </Routes>
     </Router>

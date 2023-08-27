@@ -1,10 +1,11 @@
+// import Button from "../Buttons/Buttons";
 
-import Button from '../Buttons/Buttons';
 import Input from '../Inputs/input';
 import { useCallback, useState, useRef, useEffect } from 'react';
 import { useForm , FieldValues, SubmitHandler} from 'react-hook-form';
 import {Navigate, useNavigate} from 'react-router-dom';
 import { toast } from "react-hot-toast";
+import { Box, Button, Stack, TextField, Typography } from "@mui/material";
 
 import './AuthForm.css'
 import axios from '../../API/axios';
@@ -95,127 +96,84 @@ const AuthForm = () => {
         }
       }
 
+  const navigateToRegister = () => {
+    navigate("/register");
+  };
 
-    const navigateToRegister = ()=> {
-        navigate('/register')
-    }
+  const navigateToUserDashboard = () => {
+    navigate("/userhome");
+  };
 
-    const navigateToUserDashboard = ()=> {
-        navigate('/userhome')
-    }
+  const navigateToAdminDashboard = () => {
+    navigate("/admindashboard");
+  };
 
-    const navigateToAdminDashboard = ()=> {
-        navigate('/admindashboard')
-    }
+  return (
+    <div className='auth-background'>
+      <Box width={"100%"} bgcolor={"#131485"} borderRadius={2} padding={4}>
+        <Box
+          borderColor={"#0001E4"}
+          bgcolor={"white"}
+          borderRadius={2}
+          padding={4}
+          width={"100%"}
+        >
+          <Stack
+            direction='column'
+            justifyContent='center'
+            alignItems='center'
+            spacing={2}
+          >
+            <Typography color={"#F01F75"} variant='h6'>
+              Create Account
+            </Typography>
+            <Stack
+              justifyContent='center'
+              alignItems='center'
+              spacing={2}
+              direction={"column"}
+            >
+              <Stack spacing={2} direction={"row"}>
+                <TextField
+                  id='outlined-basic'
+                  label='Username'
+                  variant='outlined'
+                />
+                <TextField
+                  id='outlined-basic'
+                  label='Email'
+                  variant='outlined'
+                />
+              </Stack>
+              <Stack spacing={2} direction={"row"}>
+                <TextField
+                  id='outlined-basic'
+                  label='Password'
+                  variant='outlined'
+                  type='password'
+                />
+                <TextField
+                  id='outlined-basic'
+                  label='Confirm Password'
+                  variant='outlined'
+                  type='password'
+                />
+              </Stack>
+              <Box padding={2} borderRadius={2} bgcolor={"lightgray"}>
+                <Typography>
+                  Passwords must be at least 6 characters and contain at least
+                  one letter and one number Passwords are case-sensitive.
+                </Typography>
+              </Box>
+            </Stack>
+            <Button variant='contained'>Continue</Button>
+            <Typography>Existing User? Click here to log in</Typography>
+          </Stack>
+        </Box>
+      </Box>
+    </div>
+  );
+};
 
-
-
-
-    return ( 
-        <div className="auth-background" >
-            <div
-            className="custom-card">
-                <form style={{"margin-top": "1.5rem"}}
-                onSubmit={handleSubmit(onSubmit)}
-                >
-                    {variant === 'REGISTER' && (
-                    <>
-                        <h2 className="home-title">
-                        Creat an Account
-                        </h2>
-                    
-                        <Input 
-                        id='username'
-                        name='username'
-                        type='text'
-                        label='Username'
-                        register={register}
-                        errors={errors}
-                        disabled={isLoading}
-                        placeholder='Enter Username'/>
-                        <Input 
-                        id='email'
-                        name='email'
-                        type='email'
-                        label='Email Address'
-                        register={register}
-                        errors={errors}
-                        placeholder='Enter Email Address'
-                        disabled={isLoading}
-                        />
-                        <Input 
-                        id='createpassword'
-                        type='password'
-                        label='Password'
-                        name='password'
-                        register={register}
-                        errors={errors}
-                        disabled={isLoading}
-                        placeholder='Enter Password'
-                        />
-                        <Input 
-                        id='confirmpassword'
-                        type='password'
-                        name='confirmpassword'
-                        label='Confirm Password'
-                        register={register}
-                        errors={errors}
-                        disabled={isLoading}
-                        placeholder='Confirm Password'
-                        />
-                    </>
-                    ) }
-                    {variant === 'LOGIN' && (
-                        <>
-                        <h2 className="home-title">
-                            Sign In to your Account
-                            </h2>
-                            <Input 
-                        id='name'
-                        name='username'
-                        type='text'
-                        label='Username'
-                        register={register}
-                        errors={errors}
-                        disabled={isLoading}
-                        placeholder='Username'/>
-                        <Input 
-                        id='password'
-                        type='password'
-                        name='password'
-                        label='Password'
-                        register={register}
-                        errors={errors}
-                        disabled={isLoading}
-                        placeholder='Password'
-                    />
-                            </>
-                    )}
-                    <div>
-                        <Button
-                        disabled={isLoading}
-                        fullWidth
-                        type='submit'
-                        
-                        >
-                            {variant === 'LOGIN' ? 'Sign In' : 'Register'}
-                        </Button>
-                    </div>
-                </form>
-                <div className="custom-lower">
-                    <div>
-                        {variant === 'LOGIN' ? "Don't have an account?" : 'Already have an account?'}
-                    </div>
-                    <div
-                    onClick={toggleVarient}
-                    style={{'text-decoration': 'underline','cursor': 'pointer'}}
-                    >
-                        {variant === 'LOGIN' ? 'Create an account' : 'Sign In'}
-                    </div>
-                </div>
-            </div>   
-        </div>
-     );
-}
- 
 export default AuthForm;
+

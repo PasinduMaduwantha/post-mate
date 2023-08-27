@@ -1,34 +1,94 @@
+import * as React from "react";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import Menu from "@mui/material/Menu";
+import MenuIcon from "@mui/icons-material/Menu";
+import Container from "@mui/material/Container";
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
+import Tooltip from "@mui/material/Tooltip";
+import MenuItem from "@mui/material/MenuItem";
+import AdbIcon from "@mui/icons-material/Adb";
+import logo from "../../images/logo.png";
 
-import { Link } from "react-router-dom";
-import './NavBar.css'
-import logo from '../../images/logo.png'
-import profileIcon from '../../images/Profile-user.png'
+const pages = ["Home", "About Us", "Services", "Contact Us", "Help"];
+const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
-const NavBar = () => {
-    return ( 
-      <div>
+function NavBar() {
+  const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const [anchorElUser, setAnchorElUser] = React.useState(null);
 
-        <div className="navbar">
-          <img 
-          src={logo}
-          alt=""
-          style={{ width: '80px', height: 'auto', marginRight: '20px', }}  />
-          
-        <nav>
-          <ul>
-            <li><Link to="/userhome">Home</Link></li>
-            <li><Link to="/about">About Us</Link></li>
-            <li><Link to="/services">Services</Link></li>
-            <li><Link to="/contact">Contact Us</Link></li>
-            <li><Link to="/help">Help</Link></li>
-          </ul>
-        </nav>
-          {/* <img src={profileIcon} alt="" style={{ width: '60px', height: 'auto',justifyItems:'right'}} /> */}
-        </div>
-        <div>
-        </div>
-      </div>
-     );
+  const handleOpenNavMenu = (event) => {
+    setAnchorElNav(event.currentTarget);
+  };
+  const handleOpenUserMenu = (event) => {
+    setAnchorElUser(event.currentTarget);
+  };
+
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
+  };
+
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
+
+  return (
+    <AppBar
+      sx={{ marginBottom: 2 }}
+      style={{ background: "#EFE7FA" }}
+      position='static'
+    >
+      <Container maxWidth='xl'>
+        <Toolbar disableGutters>
+          <img style={{ maxWidth: 120 }} src={logo} />
+          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+            {pages.map((page) => (
+              <Button
+                key={page}
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, color: "black", display: "block" }}
+              >
+                {page}
+              </Button>
+            ))}
+          </Box>
+
+          <Box sx={{ flexGrow: 0 }}>
+            <Tooltip title='Open settings'>
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                <Avatar alt='Remy Sharp' src='/static/images/avatar/2.jpg' />
+              </IconButton>
+            </Tooltip>
+            <Menu
+              sx={{ mt: "45px" }}
+              id='menu-appbar'
+              anchorEl={anchorElUser}
+              anchorOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              open={Boolean(anchorElUser)}
+              onClose={handleCloseUserMenu}
+            >
+              {settings.map((setting) => (
+                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                  <Typography textAlign='center'>{setting}</Typography>
+                </MenuItem>
+              ))}
+            </Menu>
+          </Box>
+        </Toolbar>
+      </Container>
+    </AppBar>
+  );
 }
- 
 export default NavBar;
