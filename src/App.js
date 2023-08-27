@@ -17,6 +17,7 @@ import RecievedLetterTracker from './page/RecievedLetterTracker/RecievedLetterTr
 import SendInquiry from './page/SendInquiry/SendInquiry';
 import PostalStamp from './page/PostalStamp/PostalStamp';
 import PostalCost from './page/PostalCost/PostalCost';
+import AdminLayout from './page/Admin/AdminLayout';
 
 function App() {
   return (

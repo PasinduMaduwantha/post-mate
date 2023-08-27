@@ -1,3 +1,4 @@
+
 // // import Button from "../Buttons/Buttons";
 
 // import Input from '../Inputs/input';
@@ -205,55 +206,13 @@ const AuthForm = () => {
   const [Varient, setVarient] = useState("LOGIN");
   const [isLoading, setIsLoading] = useState(false);
 
-  // const toggleVarient = useCallback(() => {
-  //   if (Varient === "LOGIN") {
-  //     setVarient("REGISTER");
-  //   } else {
-  //     setVarient("LOGIN");
-  //   }
-  // }, [Varient]);
-
-  // const {
-  //   register,
-  //   handleSubmit,
-  //   formState: { errors },
-  // } = useForm({
-  //   defaultValues: {
-  //     name: "",
-  //     email: "",
-  //     password: "",
-  //   },
-  // });
 
   const onSubmit = () => {
-    // console.log(values);
+
     navigate('/signUpForm', { state: values })
-    // setIsLoading(true);
-    // if (Varient === "REGISTER") {
-    //   // Axios Register
-    //   navigateToRegister();
-    // }
-    // if (Varient === "LOGIN") {
-    //   // NextAuth Signin
-    //   if (data.isAdmin) {
-    //     navigateToAdminDashboard();
-    //   } else {
-    //     navigateToUserDashboard();
-    //   }
-    // }
+    console.log(values);
   };
 
-  const navigateToRegister = () => {
-    navigate("/register");
-  };
-
-  const navigateToUserDashboard = () => {
-    navigate("/userhome");
-  };
-
-  const navigateToAdminDashboard = () => {
-    navigate("/admindashboard");
-  };
 
   return (
     <div className='auth-background'>
@@ -338,3 +297,4 @@ const AuthForm = () => {
 };
 
 export default AuthForm;
+

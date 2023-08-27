@@ -26,7 +26,9 @@ const pageToUrlMap = {
   "Help": "/help",
 };
 
-function NavBar() {
+
+function NavBar({ isUser }) {
+
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -47,9 +49,10 @@ function NavBar() {
 
   return (
     <AppBar
-      sx={{ marginBottom: 2 }}
+      sx={{ marginBottom: 2, zIndex: (theme) => theme.zIndex.drawer + 1 }}
       style={{ background: "#EFE7FA" }}
-      position='static'
+      position='fixed'
+      elevation={0}
     >
       <Container maxWidth='xl'>
         <Toolbar disableGutters>
