@@ -28,7 +28,7 @@ function App() {
         </Route>
         <Route path="/services" element={<Services />}>
         </Route>
-        <Route path="/" element={<Home />}>
+        <Route path="/" element={<AdminLayout />}>
         </Route>
       </Routes>
     </Router>
