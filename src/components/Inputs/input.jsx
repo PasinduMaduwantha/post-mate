@@ -17,7 +17,9 @@ const Input = ({
     required,
     register,
     errors,
-    disabled
+    disabled,
+    placeholder,
+    name,
 }) => {
     return (  
         <div>
@@ -30,8 +32,11 @@ const Input = ({
                 <input
                 id={id}
                 type={type}
+                name={name}
                 autoComplete={type}
                 disabled={disabled}
+                placeholder={placeholder}
+                {...register(name,id, { required })}
                 className={clsx(
                     `custom-form-input`,
                     errors[id] && 'focus:ring-rose-500',

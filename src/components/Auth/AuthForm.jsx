@@ -1,54 +1,100 @@
 // import Button from "../Buttons/Buttons";
-import Input from "../Inputs/input";
-import { useCallback, useState } from "react";
-import { useForm, FieldValues, SubmitHandler } from "react-hook-form";
-import { Navigate, useNavigate } from "react-router-dom";
 
-import "./AuthForm.css";
+import Input from '../Inputs/input';
+import { useCallback, useState, useRef, useEffect } from 'react';
+import { useForm , FieldValues, SubmitHandler} from 'react-hook-form';
+import {Navigate, useNavigate} from 'react-router-dom';
+import { toast } from "react-hot-toast";
 import { Box, Button, Stack, TextField, Typography } from "@mui/material";
 
+import './AuthForm.css'
+import axios from '../../API/axios';
+
 const AuthForm = () => {
-  const navigate = useNavigate();
+    const navigate = useNavigate()
 
-  const [Varient, setVarient] = useState("LOGIN");
-  const [isLoading, setIsLoading] = useState(false);
+    const [variant, setVariant] = useState('LOGIN')
+    const [isLoading, setIsLoading] = useState(false)
 
-  const toggleVarient = useCallback(() => {
-    if (Varient === "LOGIN") {
-      setVarient("REGISTER");
-    } else {
-      setVarient("LOGIN");
+    const toggleVarient = useCallback(() => {
+        if (variant === 'LOGIN') {
+            setVariant('REGISTER')
+        } else {
+            setVariant('LOGIN')
+        }
+    },[variant])
+
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    }=useForm({
+        defaultValues: { 
+            username: '',
+            email: '',
+            password: '',
+            confirmpassword: '',
+        }
+    })
+
+    const validate= (data) => {
+        const errors = {};
+    
+        if (data.password !== data.confirmPassword) {
+          errors.confirmPassword = 'Passwords do not match';
+        }
+    
+        return errors;
     }
-  }, [Varient]);
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    defaultValues: {
-      name: "",
-      email: "",
-      password: "",
-    },
-  });
+    const onSubmit = (data) => {
+        const { confirmpassword, ...others } = data
+    
+        console.log(data)
+        setIsLoading(true);
+        validate(data);
+        if (variant === 'REGISTER') {
 
-  const onSubmit = (data) => {
-    setIsLoading(true);
-
-    if (Varient === "REGISTER") {
-      // Axios Register
-      navigateToRegister();
+          axios.post('/api/auth/register', others)
+          .then(response => {
+              if (response.status === 201) {
+                  toast.success('Registration successful!');
+                  navigateToRegister() // Redirect to login page after successful registration
+                } else {
+                    toast.error('Registration failed. Please check your details.');
+                }
+            })
+            .catch(error => {
+            console.error('Error during registration:', error);
+            toast.error('Something went wrong during registration.');
+        })
+        .finally(() => setIsLoading(false))
     }
-    if (Varient === "LOGIN") {
-      // NextAuth Signin
-      if (data.isAdmin) {
-        navigateToAdminDashboard();
-      } else {
-        navigateToUserDashboard();
+    
+    if (variant === 'LOGIN') {
+        const {email, ...withoutEmail} = others
+        axios.post('/api/auth/login', withoutEmail)
+        .then(response => {
+                console.log(response)
+            if (response.status === 200) {
+                toast.success('Login successful!');
+                if (response.data.isAdmin) {
+                    navigateToAdminDashboard()
+                } else {
+                    navigateToUserDashboard()
+                }
+            } else {
+                toast.error('Invalid credentials. Please try again.');
+            }
+            })
+            .catch(error => {
+            console.error('Error during login:', error);
+            toast.error('Something went wrong during login.');
+            })
+            .finally(() => setIsLoading(false));
+            
+        }
       }
-    }
-  };
 
   const navigateToRegister = () => {
     navigate("/register");
@@ -130,3 +176,4 @@ const AuthForm = () => {
 };
 
 export default AuthForm;
+
