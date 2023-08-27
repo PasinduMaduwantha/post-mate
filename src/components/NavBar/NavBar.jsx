@@ -17,7 +17,7 @@ import logo from "../../images/logo.png";
 const pages = ["Home", "About Us", "Services", "Contact Us", "Help"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
-function NavBar() {
+function NavBar({ isUser }) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -38,24 +38,32 @@ function NavBar() {
 
   return (
     <AppBar
-      sx={{ marginBottom: 2 }}
+      sx={{ marginBottom: 2, zIndex: (theme) => theme.zIndex.drawer + 1 }}
       style={{ background: "#EFE7FA" }}
-      position='static'
+      position='fixed'
+      elevation={0}
     >
       <Container maxWidth='xl'>
         <Toolbar disableGutters>
           <img style={{ maxWidth: 120 }} src={logo} />
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "black", display: "block" }}
-              >
-                {page}
-              </Button>
-            ))}
-          </Box>
+
+          {isUser === true ? (
+            <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+              {pages.map((page) => (
+                <Button
+                  key={page}
+                  onClick={handleCloseNavMenu}
+                  sx={{ my: 2, color: "black", display: "block" }}
+                >
+                  {page}
+                </Button>
+              ))}
+            </Box>
+          ) : (
+            <Box
+              sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}
+            ></Box>
+          )}
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title='Open settings'>

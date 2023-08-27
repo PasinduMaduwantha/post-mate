@@ -10,6 +10,7 @@ import Help from './page/Help/Help';
 import Contact from './page/ContactUs/Contact';
 import Services from './page/Services/Services';
 import SignUpForm from './components/Auth/SignUpForm';
+import AdminLayout from './page/Admin/AdminLayout';
 
 function App() {
   return (

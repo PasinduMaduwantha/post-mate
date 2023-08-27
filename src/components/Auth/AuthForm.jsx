@@ -1,100 +1,71 @@
 // import Button from "../Buttons/Buttons";
+import Input from "../Inputs/input";
+import { useCallback, useState } from "react";
+import { FieldValues, SubmitHandler } from "react-hook-form";
+import { Navigate, useNavigate } from "react-router-dom";
 
-import Input from '../Inputs/input';
-import { useCallback, useState, useRef, useEffect } from 'react';
-import { useForm , FieldValues, SubmitHandler} from 'react-hook-form';
-import {Navigate, useNavigate} from 'react-router-dom';
+import Input from "../Inputs/input";
+import { useCallback, useState, useRef, useEffect } from "react";
+import { useForm, FieldValues, SubmitHandler } from "react-hook-form";
+import { Navigate, useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import { Box, Button, Stack, TextField, Typography } from "@mui/material";
+import useForm from "../../Hooks/useForm";
 
-import './AuthForm.css'
-import axios from '../../API/axios';
+import "./AuthForm.css";
+import axios from "../../API/axios";
 
 const AuthForm = () => {
-    const navigate = useNavigate()
+  const navigate = useNavigate();
 
-    const [variant, setVariant] = useState('LOGIN')
-    const [isLoading, setIsLoading] = useState(false)
+  const getFreshModel = () => ({
+    username: "",
+    email: "",
+    password: "",
+  });
 
-    const toggleVarient = useCallback(() => {
-        if (variant === 'LOGIN') {
-            setVariant('REGISTER')
-        } else {
-            setVariant('LOGIN')
-        }
-    },[variant])
+  const { values, setValues, errors, setErrors, handleInputChange } =
+    useForm(getFreshModel);
 
-    const {
-        register,
-        handleSubmit,
-        formState: { errors },
-    }=useForm({
-        defaultValues: { 
-            username: '',
-            email: '',
-            password: '',
-            confirmpassword: '',
-        }
-    })
+  const [Varient, setVarient] = useState("LOGIN");
+  const [isLoading, setIsLoading] = useState(false);
 
-    const validate= (data) => {
-        const errors = {};
-    
-        if (data.password !== data.confirmPassword) {
-          errors.confirmPassword = 'Passwords do not match';
-        }
-    
-        return errors;
-    }
+  // const toggleVarient = useCallback(() => {
+  //   if (Varient === "LOGIN") {
+  //     setVarient("REGISTER");
+  //   } else {
+  //     setVarient("LOGIN");
+  //   }
+  // }, [Varient]);
 
-    const onSubmit = (data) => {
-        const { confirmpassword, ...others } = data
-    
-        console.log(data)
-        setIsLoading(true);
-        validate(data);
-        if (variant === 'REGISTER') {
+  // const {
+  //   register,
+  //   handleSubmit,
+  //   formState: { errors },
+  // } = useForm({
+  //   defaultValues: {
+  //     name: "",
+  //     email: "",
+  //     password: "",
+  //   },
+  // });
 
-          axios.post('/api/auth/register', others)
-          .then(response => {
-              if (response.status === 201) {
-                  toast.success('Registration successful!');
-                  navigateToRegister() // Redirect to login page after successful registration
-                } else {
-                    toast.error('Registration failed. Please check your details.');
-                }
-            })
-            .catch(error => {
-            console.error('Error during registration:', error);
-            toast.error('Something went wrong during registration.');
-        })
-        .finally(() => setIsLoading(false))
-    }
-    
-    if (variant === 'LOGIN') {
-        const {email, ...withoutEmail} = others
-        axios.post('/api/auth/login', withoutEmail)
-        .then(response => {
-                console.log(response)
-            if (response.status === 200) {
-                toast.success('Login successful!');
-                if (response.data.isAdmin) {
-                    navigateToAdminDashboard()
-                } else {
-                    navigateToUserDashboard()
-                }
-            } else {
-                toast.error('Invalid credentials. Please try again.');
-            }
-            })
-            .catch(error => {
-            console.error('Error during login:', error);
-            toast.error('Something went wrong during login.');
-            })
-            .finally(() => setIsLoading(false));
-            
-        }
-      }
+  const onSubmit = () => {
+    console.log(values);
+    // setIsLoading(true);
+    // if (Varient === "REGISTER") {
+    //   // Axios Register
+    //   navigateToRegister();
+    // }
+    // if (Varient === "LOGIN") {
+    //   // NextAuth Signin
+    //   if (data.isAdmin) {
+    //     navigateToAdminDashboard();
+    //   } else {
+    //     navigateToUserDashboard();
+    //   }
+    // }
+  };
 
   const navigateToRegister = () => {
     navigate("/register");
@@ -138,19 +109,27 @@ const AuthForm = () => {
                   id='outlined-basic'
                   label='Username'
                   variant='outlined'
+                  value={values.username}
+                  name='username'
+                  onChange={handleInputChange}
                 />
                 <TextField
                   id='outlined-basic'
                   label='Email'
+                  value={values.email}
+                  name='email'
                   variant='outlined'
+                  onChange={handleInputChange}
                 />
               </Stack>
               <Stack spacing={2} direction={"row"}>
                 <TextField
                   id='outlined-basic'
                   label='Password'
+                  value={values.password}
                   variant='outlined'
                   type='password'
+                  onChange={handleInputChange}
                 />
                 <TextField
                   id='outlined-basic'
@@ -166,7 +145,9 @@ const AuthForm = () => {
                 </Typography>
               </Box>
             </Stack>
-            <Button variant='contained'>Continue</Button>
+            <Button onClick={onSubmit} variant='contained'>
+              Continue
+            </Button>
             <Typography>Existing User? Click here to log in</Typography>
           </Stack>
         </Box>
@@ -176,4 +157,3 @@ const AuthForm = () => {
 };
 
 export default AuthForm;
-
