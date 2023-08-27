@@ -1,19 +1,15 @@
 // import Button from "../Buttons/Buttons";
-import Input from "../Inputs/input";
-import { useCallback, useState } from "react";
-import { FieldValues, SubmitHandler } from "react-hook-form";
-import { Navigate, useNavigate } from "react-router-dom";
+import { FieldValues } from "react-hook-form";
+import { Navigate } from "react-router-dom";
 
 import Input from "../Inputs/input";
 import { useCallback, useState, useRef, useEffect } from "react";
-import { useForm, FieldValues, SubmitHandler } from "react-hook-form";
-import { Navigate, useNavigate } from "react-router-dom";
-import { toast } from "react-hot-toast";
+import { SubmitHandler } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import { Box, Button, Stack, TextField, Typography } from "@mui/material";
 import useForm from "../../Hooks/useForm";
 
 import "./AuthForm.css";
-import axios from "../../API/axios";
 
 const AuthForm = () => {
   const navigate = useNavigate();
