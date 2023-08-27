@@ -1,15 +1,25 @@
-import AuthForm from "../../components/Auth/AuthForm"
-import './home.css'
+import AuthForm from "../../components/Auth/AuthForm";
+import LoginForm from "../../components/Auth/LoginForm";
+import SignUpForm from "../../components/Auth/SignUpForm";
+import Footer from "../../components/Footer/Footer";
+import NavBar from "../../components/NavBar/NavBar";
+import PostalCodeLookup from "../PostalCodeLookup/PostalCodeLookup";
+import PostalCost from "../PostalCost/PostalCost";
+import RecievedLetterTracker from "../RecievedLetterTracker/RecievedLetterTracker";
+import SendInquiry from "../SendInquiry/SendInquiry";
+import UserHome from "../User_Home/userHome";
+import "./home.css";
 
 export default function Home() {
   return (
-    <div className="home-background">
-      <div className='home-background-wrap'>
-        <h2 className="home-title">
-          LogIn to your Account
-        </h2>
-        <AuthForm />
+    <>
+      <NavBar />
+      <div className='home-background'>
+        <div className='home-background-wrap'>
+          <AuthForm />
+        </div>
       </div>
-    </div>
-  )
+      <Footer />
+    </>
+  );
 }
