@@ -17,10 +17,16 @@ import NavBar from "../../components/NavBar/NavBar";
 import HomeIcon from "@mui/icons-material/Home";
 import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
 import SettingsIcon from "@mui/icons-material/Settings";
+import LogoutIcon from "@mui/icons-material/Logout";
+import AdminHome from "./AdminHome/AdminHome";
+import AdminNotification from "./AdminNotification/AdminNotification";
+import AdminSettings from "./AdminSettings";
 
 const drawerWidth = 240;
 
 export default function AdminLayout() {
+  const [currentScreen, setCurrentScreen] = React.useState("Home");
+
   return (
     <Box sx={{ display: "flex" }}>
       <NavBar isUser={false} />
@@ -45,7 +51,10 @@ export default function AdminLayout() {
           <List>
             {["Home", "Notification", "Setting"].map((text, index) => (
               <ListItem key={text} disablePadding>
-                <ListItemButton sx={{ color: "white" }}>
+                <ListItemButton
+                  onClick={() => setCurrentScreen(text)}
+                  sx={{ color: "white" }}
+                >
                   <ListItemIcon>
                     {index === 0 && <HomeIcon sx={{ color: "white" }} />}
                     {index === 1 && (
@@ -60,11 +69,11 @@ export default function AdminLayout() {
           </List>
           <Divider />
           <List>
-            {["All mail", "Trash", "Spam"].map((text, index) => (
+            {["Logout"].map((text, index) => (
               <ListItem key={text} disablePadding>
-                <ListItemButton>
+                <ListItemButton sx={{ color: "white" }}>
                   <ListItemIcon>
-                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                    <LogoutIcon sx={{ color: "white" }} />
                   </ListItemIcon>
                   <ListItemText primary={text} />
                 </ListItemButton>
@@ -75,35 +84,9 @@ export default function AdminLayout() {
       </Drawer>
       <Box component='main' sx={{ flexGrow: 1, p: 3 }}>
         <Toolbar />
-        <Typography paragraph>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Rhoncus
-          dolor purus non enim praesent elementum facilisis leo vel. Risus at
-          ultrices mi tempus imperdiet. Semper risus in hendrerit gravida rutrum
-          quisque non tellus. Convallis convallis tellus id interdum velit
-          laoreet id donec ultrices. Odio morbi quis commodo odio aenean sed
-          adipiscing. Amet nisl suscipit adipiscing bibendum est ultricies
-          integer quis. Cursus euismod quis viverra nibh cras. Metus vulputate
-          eu scelerisque felis imperdiet proin fermentum leo. Mauris commodo
-          quis imperdiet massa tincidunt. Cras tincidunt lobortis feugiat
-          vivamus at augue. At augue eget arcu dictum varius duis at consectetur
-          lorem. Velit sed ullamcorper morbi tincidunt. Lorem donec massa sapien
-          faucibus et molestie ac.
-        </Typography>
-        <Typography paragraph>
-          Consequat mauris nunc congue nisi vitae suscipit. Fringilla est
-          ullamcorper eget nulla facilisi etiam dignissim diam. Pulvinar
-          elementum integer enim neque volutpat ac tincidunt. Ornare suspendisse
-          sed nisi lacus sed viverra tellus. Purus sit amet volutpat consequat
-          mauris. Elementum eu facilisis sed odio morbi. Euismod lacinia at quis
-          risus sed vulputate odio. Morbi tincidunt ornare massa eget egestas
-          purus viverra accumsan in. In hendrerit gravida rutrum quisque non
-          tellus orci ac. Pellentesque nec nam aliquam sem et tortor. Habitant
-          morbi tristique senectus et. Adipiscing elit duis tristique
-          sollicitudin nibh sit. Ornare aenean euismod elementum nisi quis
-          eleifend. Commodo viverra maecenas accumsan lacus vel facilisis. Nulla
-          posuere sollicitudin aliquam ultrices sagittis orci a.
-        </Typography>
+        {currentScreen === "Home" && <AdminHome />}
+        {currentScreen === "Notification" && <AdminNotification />}
+        {currentScreen === "Setting" && <AdminSettings />}
       </Box>
     </Box>
   );
