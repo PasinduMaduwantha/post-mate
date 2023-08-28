@@ -38,7 +38,6 @@ const Services = () => {
                 "This allows users to find the postal code of any post office in Sri Lanka, simplifying the process of addressing mail accurately and ensuring smooth and efficient mail delivery."
               }
               imageUrl={imageOne}
-              link={"sample"}
             />
             <ServiceCard
               title={"Postal Cost"}
@@ -46,7 +45,6 @@ const Services = () => {
                 "This allows users to find the postal code of any post office in Sri Lanka, simplifying the process of addressing mail accurately and ensuring smooth and efficient mail delivery."
               }
               imageUrl={imageTwo}
-              link={"sample"}
             />
           </Stack>
           <Stack direction={"column"} spacing={2}>
@@ -56,7 +54,6 @@ const Services = () => {
                 "This allows users to find the postal code of any post office in Sri Lanka, simplifying the process of addressing mail accurately and ensuring smooth and efficient mail delivery."
               }
               imageUrl={imageThree}
-              link={"sample"}
             />
             <ServiceCard
               title={"Post Stamp"}
@@ -64,7 +61,6 @@ const Services = () => {
                 "This allows users to find the postal code of any post office in Sri Lanka, simplifying the process of addressing mail accurately and ensuring smooth and efficient mail delivery."
               }
               imageUrl={imageFour}
-              link={"sample"}
             />
           </Stack>
         </Stack>

@@ -6,44 +6,66 @@ import Grid from "@mui/material/Grid";
 import { Facebook, Instagram, Twitter } from "@mui/icons-material";
 import { Box, Stack } from "@mui/material";
 import logo from "../../images/logo.png";
+import CallIcon from "@mui/icons-material/Call";
+import EmailIcon from "@mui/icons-material/Email";
+import BusinessIcon from "@mui/icons-material/Business";
 
 function Footer() {
   return (
-    <Box
-      component='footer'
-      sx={{
-        backgroundColor: (theme) =>
-          theme.palette.mode === "light"
-            ? theme.palette.grey[200]
-            : theme.palette.grey[800],
-        p: 6,
-
-        bottom: 0,
-        width: "100%",
-        marginTop: 3,
-      }}
+    // <Box
+    //   padding={5}
+    //   bgcolor={"#131485"}
+    //   width={"100%"}
+    //   marginTop={3}
+    //   bottom={0}
+    //   // component='footer'
+    //   // sx={{
+    //   //   bottom: 0,
+    //   //   width: "100%",
+    //   //   marginTop: 3,
+    //   // }}
+    // >
+    <Stack
+      direction='row'
+      justifyContent='center'
+      alignItems='center'
+      spacing={5}
+      bgcolor={"#131485"}
+      width={"100%"}
+      marginTop={3}
+      bottom={0}
+      padding={5}
     >
-      <Container maxWidth='lg'>
-        <Stack direction={"row"}>
-          <Stack direction={"row"}>
-            <img src={logo} />
-            <Typography>
-              Experience efficient and reliable mail services tailored to your
-              needs at our trusted post service
-            </Typography>
-          </Stack>
+      <img width={250} src={logo} />
+      <Typography color={"white"}>
+        Experience efficient and reliable <br />
+        mail services tailored to your needs at our trusted post service
+      </Typography>
 
-          <Stack direction={"column"}>
-            <Typography variant='h6'>Our Links</Typography>
-            <Typography>Home</Typography>
-            <Typography>About Us</Typography>
-            <Typography>Services</Typography>
-            <Typography>Contact Us</Typography>
-            <Typography>Help</Typography>
-          </Stack>
-        </Stack>
-      </Container>
-    </Box>
+      <Stack color={"white"} direction={"column"}>
+        <Typography variant='h6'>Our Links</Typography>
+        <Typography>Home</Typography>
+        <Typography>About Us</Typography>
+        <Typography>Services</Typography>
+        <Typography>Contact Us</Typography>
+        <Typography>Help</Typography>
+      </Stack>
+
+      <Stack color={"white"} direction={"column"}>
+        <Typography variant='h6'>Contact Us</Typography>
+        <Typography>
+          <CallIcon /> 011-987827890
+        </Typography>
+        <Typography>
+          <EmailIcon /> info@postmate.lk
+        </Typography>
+        <Typography>
+          <BusinessIcon />
+          490, Colombo, 00300, Sri Lanka.
+        </Typography>
+      </Stack>
+    </Stack>
+    // </Box>
   );
 }
 

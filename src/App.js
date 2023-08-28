@@ -25,12 +25,12 @@ function App() {
   return (
     <Router>
       <Routes>
-      <Route path="/signUp" element={<SignUp />}>
-      </Route>
-      <Route path="/login" element={<Login />}>
-      </Route>
-      <Route path="/signUpForm" element={<SignUpForm />}>
-      </Route>
+        <Route path="/signUp" element={<SignUp />}>
+        </Route>
+        <Route path="/login" element={<Login />}>
+        </Route>
+        <Route path="/signUpForm" element={<SignUpForm />}>
+        </Route>
         <Route path="/register" element={<Register />}>
         </Route>
         <Route path="/home" element={<UserHome />}>
@@ -39,7 +39,7 @@ function App() {
         </Route>
         <Route path="/about" element={<About />}>
         </Route>
-        <Route path="/help" element={<SendInquiry />}>
+        <Route path="/help" element={<Help />}>
         </Route>
         <Route path="/contact" element={<Contact />}>
         </Route>
