@@ -14,6 +14,7 @@ import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import logo from "../../images/logo.png";
 import { Link } from "react-router-dom";
+import { Notifications } from "@mui/icons-material";
 
 const pages = ["Home", "About Us", "Services", "Contact Us", "Help"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
@@ -79,6 +80,11 @@ function NavBar( ) {
               </Button>
             </Link>
           ))}  
+          </Box>
+          <Box sx={{ flexGrow: 0.3 }}>
+            <Link to='/notifications'>
+              <Notifications fontSize="large"  />
+            </Link>
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>

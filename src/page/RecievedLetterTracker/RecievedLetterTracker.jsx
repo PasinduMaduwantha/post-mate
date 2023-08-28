@@ -14,8 +14,48 @@ import React, { useState } from "react";
 import postOffice from "../../images/Rectangle 35.png";
 import frame from "../../images/Frame.png";
 import mailSent from "../../images/Mail sent-pana 1.png";
+import useForm from "../../Hooks/useForm";
+import axios from "../../API/axios";
+import { toast } from "react-hot-toast";
 
 function RecievedLetterTracker() {
+
+  const getFreshModel = () => ({
+    userName: "",
+    senderAddress: "",
+    message: "",
+  });
+
+  const { values, setValues, errors, setErrors, handleInputChange } =
+    useForm(getFreshModel);
+
+
+    const onSendClick = () => {
+
+      axios.post('/api/requests', values)
+      .then(response => {
+              console.log(response)
+          if (response.status === 200) {
+              toast.success('Add successful!');
+              setValues(getFreshModel)
+    
+          } else {
+              toast.error('Invalid credentials. Please try again.');
+          }
+          })
+          .catch(error => {
+          console.error('Error during login:', error);
+          toast.error('Something went wrong during login.');
+          })
+
+     
+
+
+    
+    };
+  
+
+
   return (
     <>
       <Stack
@@ -58,15 +98,26 @@ function RecievedLetterTracker() {
               id='outlined-basic'
               label='Username'
               variant='outlined'
+              name="userName"
+              value = {values.userName}
+              onChange={handleInputChange}
             />
             <TextField
               id='outlined-basic'
               label='Sender Address'
               variant='outlined'
+              name="senderAddress"
+              value = {values.senderAddress}
+              onChange={handleInputChange}
             />
-            <TextField id='outlined-basic' label='Message' variant='outlined' />
 
-            <Button variant='contained'>Send Request</Button>
+            <TextField id='outlined-basic' label='Message' variant='outlined' 
+            name="message"
+            value = {values.message}
+            onChange={handleInputChange}
+            />
+
+            <Button variant='contained' onClick={onSendClick} >Send Request</Button>
           </Stack>
           <img width={400} src={mailSent} />
         </Stack>

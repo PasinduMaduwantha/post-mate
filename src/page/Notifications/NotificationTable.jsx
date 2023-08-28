@@ -1,9 +1,9 @@
 import { Button, Stack } from "@mui/material";
 import { MaterialReactTable } from "material-react-table";
+
 import { useMemo, useState ,useEffect} from "react";
 import React, { useContext } from "react";
 import UserContext from "../../userContext";
-
 import axios from "../../API/axios"
 
 const dummyNotifications = [
@@ -58,9 +58,6 @@ const dummyNotifications = [
     receivedDate: "2023-08-23",
   },
 ];
-
-
-
 
 function NotificationTable() {
   const {userData} = useContext(UserContext);
@@ -150,6 +147,7 @@ function NotificationTable() {
           );
         },
       },
+
       // {
       //   header: "Reply",
       //   size: 50,
@@ -161,6 +159,7 @@ function NotificationTable() {
       //     );
       //   },
       // },
+
     ],
     []
   );
@@ -169,6 +168,7 @@ function NotificationTable() {
     <>
       {/* <ReplyRequest open={open} setOpen={setOpen} /> */}
       <MaterialReactTable  columns={columns} data={notifications} />
+
     </>
   );
 }
