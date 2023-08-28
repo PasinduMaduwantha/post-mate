@@ -1,6 +1,8 @@
+
 import React, { useState } from "react";
 import { Button, Stack } from "@mui/material";
 import { Outlet } from "react-router";
+
 
 import Footer from "../../components/Footer/Footer";
 import NavBar from "../../components/NavBar/NavBar";
@@ -23,6 +25,7 @@ const UserHome = () => {
     setActiveSection(section);
   };
 
+
   const gotoPostalCodeLookup = (section) => {
     setActiveSection(section);
   };
@@ -42,6 +45,7 @@ const UserHome = () => {
   const gotoSendInquiry = (section) => {
     setActiveSection(section);
   };
+
 
   return (
     <div>

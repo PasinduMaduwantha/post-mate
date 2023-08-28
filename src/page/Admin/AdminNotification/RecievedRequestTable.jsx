@@ -4,6 +4,21 @@ import {useEffect, useMemo, useState} from "react";
 import ReplyRequest from "./ReplyRequest";
 import axios from "../../../API/axios";
 
+axios.get("api/requests").then((res) => {
+  if(res.status === 200)
+  {
+    console.log(res.data);  
+    for(var i=0; i<res.data.length; i++)
+    {
+      dummyRequests.push(res.data[i]);
+    }
+  } 
+    
+}).catch((err) => {
+  console.log(err);
+})
+
+
 function ReceivedRequestTable() {
     const [open, setOpen] = useState(false);
     const [newRequests, setNewRequests] = useState([]);
@@ -63,9 +78,6 @@ function ReceivedRequestTable() {
                 Cell: ({cell, row}) => {
                     const requestId = row.original._id;
                     const requestAccepted = row.original.requestAccepted;
-
-                    // console.log(requestId);
-                    // console.log(requestAccepted);
 
                     if (requestAccepted === "pending") {
                         return (

@@ -264,7 +264,9 @@ function PostalCodeLookup() {
         </Typography>
         <Stack direction={"row"}>
           <Stack spacing={2} direction={"column"}>
-            <Typography onClick={handleSearchModeToggle} color={"#131485"} variant='h7'>
+            <Typography 
+            cursor='pointer'
+            onClick={handleSearchModeToggle} color={"#131485"} variant='h7'>
               {searchMode !== 'postalCode' ? 'Do You Want to Search By Post Office Name?' :'Do You Want to Search By Postal Code?'}
             </Typography>
             { searchMode !== 'postalCode' ? (
