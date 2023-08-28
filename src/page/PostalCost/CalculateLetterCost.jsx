@@ -6,9 +6,13 @@ import {
   OutlinedInput,
   Select,
   Stack,
+  TextField,
   Typography,
 } from "@mui/material";
 import boxPackage from "../../images/3268388_720 1.png";
+import { weights_costs, updateWeightCost } from './postalCostModel';
+
+
 import { useState } from "react";
 
 const ITEM_HEIGHT = 48;
@@ -22,30 +26,57 @@ const MenuProps = {
   },
 };
 
-const names = [
-  "Oliver Hansen",
-  "Van Henry",
-  "April Tucker",
-  "Ralph Hubbard",
-  "Omar Alexander",
-  "Carlos Abbott",
-  "Miriam Wagner",
-  "Bradley Wilkerson",
-  "Virginia Andrews",
-  "Kelly Snyder",
-];
+// const weights_costs = {
+//   "0-250g" : "90.00",
+//   "250-500g":"110.00",
+//   "500-1000g":"130.00",
+//   "1000-1500g":"150.00",
+//   "1500-2000g":"200.00",
+//   "2000-2500g":"250.00",
+//   "2500-3000g":"300.00",
+//   "3000-4000g":"350.00",
+//   "4000-5000g":"400.00",
+//   "5000-6000g":"450.00",
+//   "6000-7000g":"500.00",
+//   "7000-8000g":"550.00",
+//   "8000-9000g":"600.00",
+//   "9000-10000g":"650.00",
+//   "10000-11000g":"700.00",
+//   "11000-12000g":"750.00",
+//   "12000-13000g":"800.00",
+//   "13000-14000g":"850.00",
+//   "14000-15000g":"900.00",
+//   "15000-16000g":"950.00",
+//   "16000-17000g":"1000.00",
+//   "17000-18000g":"1050.00",
+//   "18000-19000g":"1100.00",
+//   "19000-20000g":"1150.00",
+
+// }
+
+
+
 
 function CalculateLetterCost() {
-  const [personName, setPersonName] = useState([]);
+  const [costs, setCosts] = useState([]);
+  const[weights, setWeight] = useState([]);
+  
+  const totalCost = Object.keys(weights_costs).map((city) => (
+    <MenuItem key={city} value={city}>
+      {city}
+    </MenuItem>
+  ));
+  
+  const handleWeightChange = (event) => {
+    // updateWeightCost("0-250g", "40000.00");
+    const selectedValue = event.target.value;
+    setWeight(selectedValue);
 
-  const handleChange = (event) => {
-    const {
-      target: { value },
-    } = event;
-    setPersonName(
-      // On autofill we get a stringified value.
-      typeof value === "string" ? value.split(",") : value
-    );
+    if (weights_costs[weights]) {
+      setCosts(weights_costs[weights]);
+    } else {
+      setCosts('');
+    }
   };
 
   return (
@@ -61,7 +92,7 @@ function CalculateLetterCost() {
         marginBottom={2}
       >
         <img width={300} src={boxPackage} alt='' />
-        <Stack direction={"column"}>
+        <Stack direction={"column"} >
           <FormControl sx={{ m: 1, width: 300 }}>
             <InputLabel id='demo-multiple-name-label'>
               Select letter weight range
@@ -69,19 +100,29 @@ function CalculateLetterCost() {
             <Select
               labelId='demo-multiple-name-label'
               id='demo-multiple-name'
-              value={personName}
-              onChange={handleChange}
+              value={weights}
+              onChange={handleWeightChange}
               input={<OutlinedInput label='Select letter weight range' />}
               MenuProps={MenuProps}
             >
-              {names.map((name) => (
+              {/* {names.map((name) => (
                 <MenuItem key={name} value={name}>
                   {name}
                 </MenuItem>
-              ))}
+              ))} */}
+              <MenuItem></MenuItem>
+              {totalCost}
             </Select>
           </FormControl>
-          <Button variant='contained'>Find Postal Cost</Button>
+          <Button sx={{ m: 1, width: 300 }} variant='contained' onClick={handleWeightChange}>Find Postal Cost</Button>
+          <TextField
+            sx={{ m: 1, width: 300 }}
+            id='outlined-basic'
+            label='Postal Cost'
+            variant='outlined'
+            onAbort={handleWeightChange}
+            value={costs}
+          />
           <Typography marginTop={10} width={400}>
             Dimention: No letter may exceed 610 mm in length, 300 mm in width
             and 300 mm in depth.

@@ -13,8 +13,47 @@ import {
 import React, { useState } from "react";
 import postOffice from "../../images/Rectangle 35.png";
 import frame from "../../images/Frame.png";
+import axios from "../../API/axios";
+import { toast } from "react-hot-toast";
+import useForm from "../../Hooks/useForm";
 
 function SendInquiry() {
+  const getFreshModel = () => ({
+    userName: "",
+    address: "",
+    phoneNumber:"",
+    message: "",
+  });
+
+  const { values, setValues, errors, setErrors, handleInputChange } =
+    useForm(getFreshModel);
+
+
+    const onSendClick = () => {
+
+      axios.post('/api/inqueries', values)
+      .then(response => {
+              console.log(response)
+          if (response.status === 200) {
+              toast.success('Add successful!');
+              setValues(getFreshModel)
+    
+          } else {
+              toast.error('Invalid credentials. Please try again.');
+          }
+          })
+          .catch(error => {
+          console.error('Error during login:', error);
+          toast.error('Something went wrong .');
+          })
+
+     
+
+
+    
+    };
+
+
   return (
     <>
       <Stack
@@ -23,7 +62,7 @@ function SendInquiry() {
         alignItems='center'
         spacing={2}
       >
-        <Typography color={"#131485"} variant='h6'>
+        <Typography color={"#131485"} variant='h4'>
           Send Inquiry
         </Typography>
         <Typography>
@@ -55,16 +94,31 @@ function SendInquiry() {
               id='outlined-basic'
               label='Username'
               variant='outlined'
+              name="userName"
+              value = {values.userName}
+              onChange={handleInputChange}
             />
-            <TextField id='outlined-basic' label='Address' variant='outlined' />
+            <TextField id='outlined-basic' label='Address' variant='outlined'
+            name="address"
+            value = {values.address}
+            onChange={handleInputChange}
+            />
             <TextField
               id='outlined-basic'
               label='Phone number'
               variant='outlined'
-            />
-            <TextField id='outlined-basic' label='Message' variant='outlined' />
+              name="phoneNumber"
+              value = {values.phoneNumber}
+              onChange={handleInputChange}
 
-            <Button variant='contained'>Send Request</Button>
+            />
+            <TextField id='outlined-basic' label='Message' variant='outlined' 
+            name="message"
+            value = {values.message}
+            onChange={handleInputChange}
+            />
+
+            <Button onClick={onSendClick} variant='contained'>Send Request</Button>
           </Stack>
         </Stack>
         <img style={{ paddingTop: 10 }} src={frame} />
