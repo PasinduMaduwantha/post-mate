@@ -19,23 +19,6 @@ const UserHome = () => {
     setActiveSection(section);
   };
 
-
-  const gotoPostalCodeLookup = () => {
-  };
-
-  const gotoPostalCost = () => {
-
-  };
-
-  const gotoReceivedLetterTracker = () => {
-  };
-
-  const gotoPostStamp = () => {
-  };
-
-  const gotoSendInquiry = () => {
-  };
-
   return (
     <div>
       <NavBar />

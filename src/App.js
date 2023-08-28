@@ -18,9 +18,14 @@ import SendInquiry from './page/SendInquiry/SendInquiry';
 import PostalStamp from './page/PostalStamp/PostalStamp';
 import PostalCost from './page/PostalCost/PostalCost';
 import AdminLayout from './page/Admin/AdminLayout';
+import  { useState } from 'react';
+import UserContext from './userContext';
 
 function App() {
+  const [userData, setUserData] = useState(null)
+  
   return (
+    <UserContext.Provider value={{ userData, setUserData }}>
     <Router>
       <Routes>
       <Route path="/signUp" element={<SignUp />}>
@@ -50,6 +55,7 @@ function App() {
         </Route>
       </Routes>
     </Router>
+    </UserContext.Provider>
   );
 }
 
