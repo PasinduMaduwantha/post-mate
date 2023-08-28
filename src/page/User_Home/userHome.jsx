@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Button } from "@mui/material";
-import { Outlet } from "react-router";
 
 import Footer from "../../components/Footer/Footer";
 import NavBar from "../../components/NavBar/NavBar";
@@ -20,21 +19,21 @@ const UserHome = () => {
   };
 
 
-  const gotoPostalCodeLookup = () => {
-  };
+  // const gotoPostalCodeLookup = () => {
+  // };
 
-  const gotoPostalCost = () => {
+  // const gotoPostalCost = () => {
 
-  };
+  // };
 
-  const gotoReceivedLetterTracker = () => {
-  };
+  // const gotoReceivedLetterTracker = () => {
+  // };
 
-  const gotoPostStamp = () => {
-  };
+  // const gotoPostStamp = () => {
+  // };
 
-  const gotoSendInquiry = () => {
-  };
+  // const gotoSendInquiry = () => {
+  // };
 
   return (
     <div>

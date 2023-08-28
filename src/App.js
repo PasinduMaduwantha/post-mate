@@ -12,6 +12,8 @@ import Services from './page/Services/Services';
 import SignUp from './components/Auth/AuthForm'
 import Login from './components/Auth/LoginForm';
 import SignUpForm from './components/Auth/SignUpForm';
+import AdminDashBoard from './page/Admin/AdminLayout';
+import Notifications from './page/Notifications/Notifications'
 import PostalCodeLookup from './page/PostalCodeLookup/PostalCodeLookup';
 import RecievedLetterTracker from './page/RecievedLetterTracker/RecievedLetterTracker';
 import SendInquiry from './page/SendInquiry/SendInquiry';
@@ -33,11 +35,15 @@ function App() {
         </Route>
         <Route path="/home" element={<UserHome />}>
         </Route>
+        <Route path="/admin/dashboard" element={<AdminDashBoard />}>
+        </Route>
         <Route path="/about" element={<About />}>
         </Route>
         <Route path="/help" element={<SendInquiry />}>
         </Route>
         <Route path="/contact" element={<Contact />}>
+        </Route>
+        <Route path="/notifications" element={<Notifications />}>
         </Route>
         <Route path="/services" element={<Services />}>
         </Route>

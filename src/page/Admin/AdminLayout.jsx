@@ -29,7 +29,6 @@ export default function AdminLayout() {
 
   return (
     <Box sx={{ display: "flex" }}>
-      <NavBar isUser={false} />
       <Drawer
         variant='permanent'
         sx={{
