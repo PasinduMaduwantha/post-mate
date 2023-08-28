@@ -17,7 +17,7 @@ import ConfirmationNumberIcon from "@mui/icons-material/ConfirmationNumber";
 import SendIcon from "@mui/icons-material/Send";
 
 const UserHome = () => {
-  const [activeSection, setActiveSection] = useState(null);
+  const [activeSection, setActiveSection] = useState("postalCodeLookup");
 
   const goToSection = (section) => {
     setActiveSection(section);
