@@ -13,13 +13,13 @@ import "./home.css";
 export default function Home() {
   return (
     <>
-      <NavBar isUser={true} />
+      {/* <NavBar isUser={true} /> */}
       <div className='home-background'>
         <div className='home-background-wrap'>
           <AuthForm />
         </div>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }

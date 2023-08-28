@@ -28,7 +28,7 @@ function App() {
       <Route path="/login" element={<Login />}>
       </Route>
       <Route path="/signUpForm" element={<SignUpForm />}>
-        </Route>
+      </Route>
         <Route path="/register" element={<Register />}>
         </Route>
         <Route path="/home" element={<UserHome />}>
@@ -41,11 +41,11 @@ function App() {
         </Route>
         <Route path="/services" element={<Services />}>
         </Route>
-        <Route path="/home/postalCodeLookup" element={<PostalCodeLookup/>}></Route>
+        {/* <Route path="/home/postalCodeLookup" element={<PostalCodeLookup/>}></Route>
         <Route path="/home/postalCost" element={<PostalCost/>}></Route>
         <Route path="/home/receivedLetterTracker" element={<RecievedLetterTracker/>}></Route>
         <Route path="/home/postStamp" element={<PostalStamp/>}></Route>
-        <Route path="/home/sendInquiry" element={<SendInquiry/>}></Route>
+        <Route path="/home/sendInquiry" element={<SendInquiry/>}></Route> */}
         <Route path="/" element={<Home />}>
         </Route>
       </Routes>

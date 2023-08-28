@@ -24,7 +24,7 @@ function RecievedLetterTracker() {
         alignItems='center'
         spacing={2}
       >
-        <Typography color={"#131485"} variant='h6'>
+        <Typography color={"#131485"} variant='h4'>
           Received Letter Tracker
         </Typography>
         <Typography>

@@ -27,7 +27,7 @@ const pageToUrlMap = {
 };
 
 
-function NavBar({ isUser }) {
+function NavBar( ) {
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
