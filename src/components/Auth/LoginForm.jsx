@@ -1,14 +1,16 @@
 import "./AuthForm.css";
-import { useState } from "react";
+import { useState , useContext} from "react";
 import { Box, Button, Link, Stack, TextField, Typography } from "@mui/material";
 import { Navigate, Link as RouterLink, useNavigate } from "react-router-dom";
 import useForm from "../../Hooks/useForm";
 import { toast } from "react-hot-toast";
 import axios from '../../API/axios'
+import UserContext from "../../userContext";
 
 function LoginForm() {
   const [isLoading, setIsLoading] = useState(false)
   const navigate = useNavigate()
+  const {setUserData} = useContext(UserContext)
 
   const userModel = () =>({
     username: "",
@@ -24,6 +26,10 @@ function LoginForm() {
         .then(response => {
                 console.log(response)
             if (response.status === 200) {
+
+              localStorage.setItem('user', JSON.stringify(response.data));
+              setUserData(response.data)
+
                 toast.success('Login successful!');
                 if (response.data.isAdmin) {
                   navigate('/admin/dashboard')

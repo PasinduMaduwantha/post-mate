@@ -1,17 +1,34 @@
 import { Box, Button, Stack, TextField, Typography } from "@mui/material";
 import useForm from "../../../Hooks/useForm";
 
+import axios from "../../../API/axios";
+
 function AdminSendNotification() {
+
+  const handleClose = () => {
+    setValues({});
+};
+
   const getFreshModel = () => ({
-    username: "",
-    email: "",
-    password: "",
-  });
+    userID:  "",
+    userName: "",
+    senderAddress: "",
+    isReply: true,
+    message: "",
+});
 
-  const { values, setValues, errors, setErrors, handleInputChange } =
-    useForm(getFreshModel);
+const {values, setValues, handleInputChange} = useForm(getFreshModel);
 
-  const onSubmit = () => {};
+const onSubmit = async () => {
+    try {
+        // Send form data to API
+        await axios.post("/api/notifications", values);
+        handleClose(); // Close the dialog on successful submission
+    } catch (error) {
+        console.error("Error sending notification:", error);
+        // Handle error or show error message
+    }
+};
 
   return (
     <>
@@ -36,8 +53,8 @@ function AdminSendNotification() {
               <TextField
                 id='outlined-basic'
                 label='User Id'
-                value={values.email}
-                name='email'
+                value={values.userID}
+                name='userID'
                 variant='outlined'
                 onChange={handleInputChange}
               />
@@ -45,8 +62,8 @@ function AdminSendNotification() {
                 id='outlined-basic'
                 label='Username'
                 variant='outlined'
-                value={values.username}
-                name='username'
+                value={values.userName}
+                name='userName'
                 onChange={handleInputChange}
               />
             </Stack>
@@ -54,22 +71,22 @@ function AdminSendNotification() {
               id='outlined-basic'
               label='Sender Address'
               variant='outlined'
-              value={values.username}
-              name='username'
+              value={values.senderAddress}
+              name='senderAddress'
               onChange={handleInputChange}
             />
             <TextField
               id='outlined-basic'
               label='Custom Message'
               variant='outlined'
-              value={values.username}
-              name='username'
+              value={values.customMessage}
+              name='customMessage'
               onChange={handleInputChange}
               multiline
             />
           </Stack>
           <Stack spacing={2} direction={"row"}>
-            <Button onClick={onSubmit} variant='outlined'>
+            <Button onClick={handleClose} variant='outlined'>
               Cancel
             </Button>
             <Button onClick={onSubmit} variant='contained'>

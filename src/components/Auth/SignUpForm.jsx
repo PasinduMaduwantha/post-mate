@@ -38,6 +38,9 @@ function SignUpForm() {
     .then(response => {
       if (response.status === 201) {
         toast.success('Registration successful!');
+
+        localStorage.setItem('user', JSON.stringify(response.data));
+
         navigate('/home') // Redirect to login page after successful registration
       } else {
         toast.error('Registration failed. Please check your details.');

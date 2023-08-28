@@ -25,26 +25,25 @@ const UserHome = () => {
     setActiveSection(section);
   };
 
+//   const gotoPostalCodeLookup = (section) => {
+//     setActiveSection(section);
+//   };
 
-  const gotoPostalCodeLookup = (section) => {
-    setActiveSection(section);
-  };
+//   const gotoPostalCost = (section) => {
+//     setActiveSection(section);
+//   };
 
-  const gotoPostalCost = (section) => {
-    setActiveSection(section);
-  };
+//   const gotoReceivedLetterTracker = (section) => {
+//     setActiveSection(section);
+//   };
 
-  const gotoReceivedLetterTracker = (section) => {
-    setActiveSection(section);
-  };
+//   const gotoPostStamp = (section) => {
+//     setActiveSection(section);
+//   };
 
-  const gotoPostStamp = (section) => {
-    setActiveSection(section);
-  };
-
-  const gotoSendInquiry = (section) => {
-    setActiveSection(section);
-  };
+//   const gotoSendInquiry = (section) => {
+//     setActiveSection(section);
+//   };
 
 
   return (

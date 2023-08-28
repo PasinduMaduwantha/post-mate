@@ -4,20 +4,19 @@ import {useEffect, useMemo, useState} from "react";
 import ReplyRequest from "./ReplyRequest";
 import axios from "../../../API/axios";
 
-axios.get("api/requests").then((res) => {
-  if(res.status === 200)
-  {
-    console.log(res.data);  
-    for(var i=0; i<res.data.length; i++)
-    {
-      dummyRequests.push(res.data[i]);
-    }
-  } 
+// axios.get("api/requests").then((res) => {
+//   if(res.status === 200)
+//   {
+//     console.log(res.data);  
+//     for(var i=0; i<res.data.length; i++)
+//     {
+//       dummyRequests.push(res.data[i]);
+//     }
+//   } 
     
-}).catch((err) => {
-  console.log(err);
-})
-
+// }).catch((err) => {
+//   console.log(err);
+// })
 
 function ReceivedRequestTable() {
     const [open, setOpen] = useState(false);

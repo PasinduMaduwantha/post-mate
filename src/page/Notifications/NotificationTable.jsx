@@ -1,6 +1,9 @@
 import { Button, Stack } from "@mui/material";
 import { MaterialReactTable } from "material-react-table";
-import { useMemo, useState } from "react";
+
+import { useMemo, useState ,useEffect} from "react";
+import React, { useContext } from "react";
+import UserContext from "../../userContext";
 import axios from "../../API/axios"
 
 const dummyNotifications = [
@@ -56,28 +59,56 @@ const dummyNotifications = [
   },
 ];
 
-const notifications=[]
-
-// axios.get("api/requests").then((res) => {
-//   if(res.status === 200)
-//   {
-//     console.log(res.data);  
-//     for(var i=0; i<res.data.length; i++)
-//     {
-//         notifications.push(res.data[i]);
-//     }
-//   } 
-    
-// }).catch((err) => {
-//   console.log(err);
-// })
-
-
-
-
 function NotificationTable() {
+  const {userData} = useContext(UserContext);
   const [open, setOpen] = useState(false);
-  const [newRequests, setNewRequests] = useState(dummyNotifications);
+  const [username, setUsername] = useState("");
+  const [notifications, setNotifications] = useState([]);
+  console.log(userData)
+  
+  // const userLocal = ()=>{
+    // Retrieve the stored JSON object from localStorage  
+    
+  // }
+  useEffect(() => {
+      const userJSON = localStorage.getItem("user");
+      
+      if (userJSON) {
+        console.log("User JSON:")
+        try {
+          // Parse the JSON string into a JavaScript object
+          const userObject = JSON.parse(userJSON);
+          
+            // Access the username property
+            const userUsername = userObject.username;  
+            // Set the username in the state
+            setUsername(userUsername);
+          } catch (error) {
+            console.error("Error parsing user JSON:", error);
+          }
+        } 
+        console.log(username);
+  }, []);
+
+  useEffect(() => {
+    if(username){
+      fetchnotifications(username);
+    }
+    
+  }, [username]);
+
+  const fetchnotifications = async (user) => {
+
+      try{
+        const res = await axios.get(`api/notifications/find/${user}`);
+        console.log(res.data);
+        setNotifications(res.data);
+      }
+      catch(err){
+        console.log(err);
+      }
+  };
+
 
   const columns = useMemo(
     () => [
@@ -92,7 +123,7 @@ function NotificationTable() {
         size: 100,
       },
       {
-        accessorKey: "recievedDate", //normal accessorKey
+        accessorKey: "updatedAt", //normal accessorKey
         header: "Received Date",
         size: 100,
       },
@@ -102,30 +133,33 @@ function NotificationTable() {
         size: 100,
       },
       {
-        header: "Accept",
+        header: "Is there a letter?",
         size: 50,
         Cell: ({ cell, row }) => {
           return (
             <Stack spacing={2} direction={"row"}>
-              <Button variant='contained'>Accept Request</Button>
+              {row.original.isReply ? 'Yes' : 'No'}
+              {/* <Button variant='contained'>Accept Request</Button>
               <Button  color='warning' variant='outlined'>
                 Reject Request
-              </Button>
+              </Button> */}
             </Stack>
           );
         },
       },
-      {
-        header: "Reply",
-        size: 50,
-        Cell: ({ cell, row }) => {
-          return (
-            <Button onClick={() => setOpen(true)} variant='contained'>
-              Send
-            </Button>
-          );
-        },
-      },
+
+      // {
+      //   header: "Reply",
+      //   size: 50,
+      //   Cell: ({ cell, row }) => {
+      //     return (
+      //       <Button  onClick={() => setOpen(true)} variant='contained'>
+      //         Send
+      //       </Button>
+      //     );
+      //   },
+      // },
+
     ],
     []
   );
@@ -133,7 +167,8 @@ function NotificationTable() {
   return (
     <>
       {/* <ReplyRequest open={open} setOpen={setOpen} /> */}
-      <MaterialReactTable columns={columns} data={newRequests} />
+      <MaterialReactTable  columns={columns} data={notifications} />
+
     </>
   );
 }

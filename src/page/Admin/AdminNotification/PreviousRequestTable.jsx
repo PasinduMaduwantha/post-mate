@@ -1,6 +1,8 @@
 import { Button, Stack, Typography } from "@mui/material";
 import { MaterialReactTable } from "material-react-table";
-import { useMemo, useState } from "react";
+import { useMemo, useState,useEffect } from "react";
+
+import axios from '../../../API/axios'
 
 const dummyRequests = [
   {
@@ -56,34 +58,50 @@ const dummyRequests = [
 ];
 
 function PreviousRequestTable() {
-  const [newRequests, setNewRequests] = useState(dummyRequests);
+  // const [newRequests, setNewRequests] = useState(dummyRequests);
+
+  const [newRequests, setNewRequests] = useState([]);
+
+    useEffect(() => {
+        const fetchRequests = async () => {
+            try {
+                const response = await axios.get("/api/inqueries"); // Using relative path
+                setNewRequests(response.data);
+            } catch (error) {
+                console.error("Error fetching requests:", error);
+            }
+        };
+
+        fetchRequests();
+    }, []);
+
 
   const columns = useMemo(
     () => [
       {
-        accessorKey: "userId", //access nested data with dot notation
-        header: "User ID",
+        accessorKey: "userName",
+        header: "Username",
         size: 50,
       },
       {
-        accessorKey: "userName",
-        header: "Username",
-        size: 150,
+        accessorKey: "address", //normal accessorKey
+        header: "Address",
+        size: 50,
       },
       {
-        accessorKey: "receivedDate", //normal accessorKey
-        header: "Received Date",
-        size: 150,
+        accessorKey: "message", //normal accessorKey
+        header: "Inquery Message",
+        size: 50,
       },
       {
-        accessorKey: "requestStatus", //normal accessorKey
-        header: "Accept",
-        size: 150,
+        accessorKey: "phoneNumber", //access nested data with dot notation
+        header: "Phone Number",
+        size: 50,
       },
       {
-        accessorKey: "replyStatus", //normal accessorKey
-        header: "Reply",
-        size: 150,
+        accessorKey: "createdAt", //normal accessorKey
+        header: "Created Date",
+        size: 50,
       },
     ],
     []
