@@ -14,7 +14,7 @@ import {
 } from "@mui/material";
 import useForm from "../../Hooks/useForm";
 import frame from "../../images/Frame.png";
-import mailSent from "../../images/29630388_2206_w023_n003_2530b_p1_2530 1.png";
+// import mailSent from "../../images/29630388_2206_w023_n003_2530b_p1_2530 1.png";
 import axios from "../../API/axios";
 import { toast } from "react-hot-toast";
 import mailSent from "../../images/mcs.png";

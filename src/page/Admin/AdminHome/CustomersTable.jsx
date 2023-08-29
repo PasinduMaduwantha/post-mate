@@ -185,12 +185,12 @@ function CustomersTable() {
     const columns = useMemo(
         () => [
             {
-                accessorKey: "id", //access nested data with dot notation
+                accessorKey: "nationalIdNumber", //access nested data with dot notation
                 header: "Id",
                 size: 50,
             },
             {
-                accessorKey: "userName",
+                accessorKey: "username",
                 header: "Username",
                 size: 150,
             },
@@ -216,7 +216,8 @@ function CustomersTable() {
 
     return (
         <>
-            {currentCustomer && <AddCustomerForm open={open} setOpen={setOpen}/>}
+            <AddCustomerForm open={open} setOpen={setOpen}/>
+            {/* {currentCustomer && <AddCustomerForm open={open} setOpen={setOpen}/>} */}
             <Stack
                 padding={2}
                 borderRadius={2}

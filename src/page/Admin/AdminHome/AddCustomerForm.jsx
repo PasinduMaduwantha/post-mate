@@ -27,7 +27,7 @@ export default function AddCustomerForm({open, setOpen}) {
         email: "",
         nearbyPostOffice: "",
         domainName: "",
-        nationalIDNumber: "",
+        nationalIdNumber: "",
         permanentAddress: "",
         currentAddress: "",
         thirdPartyAddress: "",
@@ -108,8 +108,8 @@ export default function AddCustomerForm({open, setOpen}) {
                             id='outlined-basic'
                             label='National ID Number'
                             variant='outlined'
-                            value={values.nationalIDNumber}
-                            name='nationalIDNumber'
+                            value={values.nationalIdNumber}
+                            name='nationalIdNumber'
                             onChange={handleInputChange}
                         />
                         <TextField

@@ -10,11 +10,12 @@ function AdminSendNotification() {
 };
 
   const getFreshModel = () => ({
-    userID:  "",
+    // userID:  "", 
     userName: "",
     senderAddress: "",
     isReply: true,
-    message: "",
+    hasLetter: true,
+    message: "You have a letter",
 });
 
 const {values, setValues, handleInputChange} = useForm(getFreshModel);
@@ -50,14 +51,14 @@ const onSubmit = async () => {
           </Typography>
           <Stack spacing={2} direction={"column"}>
             <Stack spacing={2} direction={"row"}>
-              <TextField
+              {/* <TextField
                 id='outlined-basic'
                 label='User Id'
                 value={values.userID}
                 name='userID'
                 variant='outlined'
                 onChange={handleInputChange}
-              />
+              /> */}
               <TextField
                 id='outlined-basic'
                 label='Username'
@@ -79,7 +80,7 @@ const onSubmit = async () => {
               id='outlined-basic'
               label='Custom Message'
               variant='outlined'
-              value={values.customMessage}
+              value={values.message}
               name='customMessage'
               onChange={handleInputChange}
               multiline
