@@ -16,20 +16,19 @@ import logo from "../../images/logo.png";
 import { Link } from "react-router-dom";
 import { Notifications } from "@mui/icons-material";
 
-const pages = ["Home", "About Us", "Services", "Contact Us", "Help"];
+const pages = [ "About Us", "Services", "Contact Us", "Help"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 const pageToUrlMap = {
-  "Home": "/home",
-  "About Us": "/about",
+  // "Home": "/home",
   "Services": "/services",
+  "About Us": "/about",
   "Contact Us": "/contact",
   "Help": "/help",
 };
 
-
 function NavBar( ) {
-
+  
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 

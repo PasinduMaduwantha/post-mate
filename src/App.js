@@ -38,8 +38,8 @@ function App() {
         </Route>
         <Route path="/register" element={<Register />}>
         </Route>
-        <Route path="/home" element={<UserHome />}>
-        </Route>
+        {/* <Route path="/home" element={<UserHome />}>
+        </Route> */}
         <Route path="/admin/dashboard" element={<AdminDashBoard />}>
         </Route>
         <Route path="/about" element={<About />}>
@@ -50,7 +50,7 @@ function App() {
         </Route>
         <Route path="/notifications" element={<Notifications />}>
         </Route>
-        <Route path="/services" element={<Services />}>
+        <Route path="/services" element={<UserHome />}>
         </Route>
         {/* <Route path="/home/postalCodeLookup" element={<PostalCodeLookup/>}></Route>
         <Route path="/home/postalCost" element={<PostalCost/>}></Route>
