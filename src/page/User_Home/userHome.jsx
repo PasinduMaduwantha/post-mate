@@ -1,8 +1,6 @@
-
 import React, { useState } from "react";
 import { Button, Stack } from "@mui/material";
 import { Outlet } from "react-router";
-
 
 import Footer from "../../components/Footer/Footer";
 import NavBar from "../../components/NavBar/NavBar";
@@ -25,26 +23,25 @@ const UserHome = () => {
     setActiveSection(section);
   };
 
-//   const gotoPostalCodeLookup = (section) => {
-//     setActiveSection(section);
-//   };
+  //   const gotoPostalCodeLookup = (section) => {
+  //     setActiveSection(section);
+  //   };
 
-//   const gotoPostalCost = (section) => {
-//     setActiveSection(section);
-//   };
+  //   const gotoPostalCost = (section) => {
+  //     setActiveSection(section);
+  //   };
 
-//   const gotoReceivedLetterTracker = (section) => {
-//     setActiveSection(section);
-//   };
+  //   const gotoReceivedLetterTracker = (section) => {
+  //     setActiveSection(section);
+  //   };
 
-//   const gotoPostStamp = (section) => {
-//     setActiveSection(section);
-//   };
+  //   const gotoPostStamp = (section) => {
+  //     setActiveSection(section);
+  //   };
 
-//   const gotoSendInquiry = (section) => {
-//     setActiveSection(section);
-//   };
-
+  //   const gotoSendInquiry = (section) => {
+  //     setActiveSection(section);
+  //   };
 
   return (
     <div>
@@ -129,11 +126,11 @@ const UserHome = () => {
       
         </div>*/}
 
-      {activeSection !== "postalCodeLookup" && <PostalCodeLookup />}
+      {/* {activeSection !== "postalCodeLookup" && <PostalCodeLookup />}
       {activeSection !== "postalCost" && <PostalCost />}
       {activeSection !== "receivedLetterTracker" && <RecievedLetterTracker />}
       {activeSection !== "postStamp" && <PostalStamp />}
-      {activeSection !== "sendInquiry" && <SendInquiry />}
+      {activeSection !== "sendInquiry" && <SendInquiry />} */}
 
       <Footer />
     </div>
