@@ -14,46 +14,39 @@ import {
 } from "@mui/material";
 import useForm from "../../Hooks/useForm";
 import frame from "../../images/Frame.png";
-import mailSent from "../../images/29630388_2206_w023_n003_2530b_p1_2530 1.png";
+// import mailSent from "../../images/29630388_2206_w023_n003_2530b_p1_2530 1.png";
 import axios from "../../API/axios";
 import { toast } from "react-hot-toast";
 import mailSent from "../../images/mcs.png";
 
-
 const Contact = () => {
-
   const getFreshModel = () => ({
     userName: "",
     address: "",
-    phoneNumber:"",
+    phoneNumber: "",
     message: "",
   });
 
   const { values, setValues, errors, setErrors, handleInputChange } =
     useForm(getFreshModel);
 
-
-    const onSendClick = () => {
-
-      axios.post('/api/inqueries', values)
-      .then(response => {
-              console.log(response)
-          if (response.status === 200) {
-              toast.success('Add successful!');
-              setValues(getFreshModel)
-    
-          } else {
-              toast.error('Invalid credentials. Please try again.');
-          }
-          })
-          .catch(error => {
-          console.error('Error during login:', error);
-          toast.error('Something went wrong .');
-          })
-    
-    };
-
-   
+  const onSendClick = () => {
+    axios
+      .post("/api/inqueries", values)
+      .then((response) => {
+        console.log(response);
+        if (response.status === 200) {
+          toast.success("Add successful!");
+          setValues(getFreshModel);
+        } else {
+          toast.error("Invalid credentials. Please try again.");
+        }
+      })
+      .catch((error) => {
+        console.error("Error during login:", error);
+        toast.error("Something went wrong .");
+      });
+  };
 
   return (
     <>
