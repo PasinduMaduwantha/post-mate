@@ -21,6 +21,7 @@ import axios from "../../../API/axios";
 function ReceivedRequestTable() {
     const [open, setOpen] = useState(false);
     const [newRequests, setNewRequests] = useState([]);
+    const [isReplied, setIsReplied] = useState(false);
 
     useEffect(() => {
         const fetchRequests = async () => {
@@ -57,19 +58,14 @@ function ReceivedRequestTable() {
     const columns = useMemo(
         () => [
             {
-                accessorKey: "userId", //access nested data with dot notation
-                header: "User ID",
+                accessorKey: "userName",
+                header: "Username",
                 size: 50,
             },
             {
-                accessorKey: "userName",
-                header: "Username",
-                size: 150,
-            },
-            {
-                accessorKey: "receivedDate", //normal accessorKey
+                accessorKey: "recievedDate", //normal accessorKey
                 header: "Received Date",
-                size: 150,
+                size: 50,
             },
             {
                 header: "Accept",
@@ -105,10 +101,20 @@ function ReceivedRequestTable() {
                 header: "Reply",
                 size: 50,
                 Cell: ({cell, row}) => {
+                    const reply = row.original.requestAccepted;
+                    setIsReplied(reply);
+
                     return (
-                        <Button onClick={() => setOpen(true)} variant='contained'>
-                            Send
-                        </Button>
+                        <>
+                            {reply &&(
+                                <Button 
+                                onClick={() => setOpen(true)} variant='contained'>
+                                    Send
+                                </Button>
+                                
+                            )}
+                            {!reply && (<Button  variant="contained">Replied</Button>)}
+                        </>
                     );
                 },
             },
