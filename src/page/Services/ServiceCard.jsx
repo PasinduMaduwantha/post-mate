@@ -22,7 +22,7 @@ export default function ServiceCard({ title, description, imageUrl }) {
       </CardContent>
       <CardActions>
         <Button size='small'>Share</Button>
-        <Button onClick={() => navigate("/home")} size='small'>
+        <Button onClick={() => navigate("/services")} size='small'>
           Learn More
         </Button>
       </CardActions>
