@@ -145,7 +145,7 @@ export default function UpdateCustomerForm({open, setOpen, currentCustomer}) {
                 <DialogActions>
                     <Button onClick={handleClose}>Cancel</Button>
                     <Button onClick={onSubmit} variant='contained'>
-                        Add Customer
+                        Submit
                     </Button>
                 </DialogActions>
             </Dialog>

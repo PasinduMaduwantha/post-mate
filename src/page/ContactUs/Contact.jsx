@@ -1,6 +1,7 @@
 import NavBar from "../../components/NavBar/NavBar";
 import Footer from "../../components/Footer/Footer";
 import {
+  Box,
   Button,
   FormControl,
   InputLabel,
@@ -16,6 +17,8 @@ import frame from "../../images/Frame.png";
 import mailSent from "../../images/29630388_2206_w023_n003_2530b_p1_2530 1.png";
 import axios from "../../API/axios";
 import { toast } from "react-hot-toast";
+import mailSent from "../../images/mcs.png";
+
 
 const Contact = () => {
 
@@ -74,7 +77,7 @@ const Contact = () => {
           direction='row'
           justifyContent='center'
           alignItems='center'
-          spacing={3}
+          spacing={1}
         >
           <Stack spacing={2} direction={"column"}>
             <Typography
@@ -127,7 +130,12 @@ const Contact = () => {
               Submit Feedback
             </Button>
           </Stack>
-          <img style={{ marginLeft: 100 }} width={300} src={mailSent} />
+
+          <img
+            style={{ marginLeft: 50, borderRadius: 20 }}
+            width={300}
+            src={mailSent}
+          />
         </Stack>
       </Stack>
       <Footer />
