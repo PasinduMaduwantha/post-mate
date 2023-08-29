@@ -20,10 +20,10 @@ export default function AddCustomerForm({open, setOpen}) {
     };
 
     const getFreshModel = () => ({
-        firstName: "",
-        lastName: "",
-        userName: "",
-        password: "",
+        firstname: "",
+        lastname: "",
+        username: "",
+        password: "12345",
         email: "",
         nearbyPostOffice: "",
         domainName: "",
@@ -37,9 +37,10 @@ export default function AddCustomerForm({open, setOpen}) {
     const {values, handleInputChange} = useForm(getFreshModel);
 
     const onSubmit = async () => {
+        console.log(values)
         try {
             // Send form data to API
-            await axios.post(`/api/users/${values._id}`, values);
+            await axios.post(`/api/users`, values);
             handleClose(); // Close the dialog on successful submission
         } catch (error) {
             console.error("Error adding customer:", error);
@@ -75,8 +76,8 @@ export default function AddCustomerForm({open, setOpen}) {
                             id='outlined-basic'
                             label='Username'
                             variant='outlined'
-                            value={values.userName}
-                            name='userName'
+                            value={values.username}
+                            name='username'
                             onChange={handleInputChange}
                         />
                         <TextField
