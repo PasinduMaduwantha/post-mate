@@ -24,6 +24,7 @@ function RecievedLetterTracker() {
     userName: "",
     senderAddress: "",
     message: "",
+    requestAccepted: "pending"
   });
 
   const { values, setValues, errors, setErrors, handleInputChange } =

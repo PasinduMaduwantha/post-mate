@@ -129,11 +129,11 @@ const UserHome = () => {
       
         </div>*/}
 
-      {/* {activeSection !== "postalCodeLookup" && <PostalCodeLookup />}
+      {activeSection !== "postalCodeLookup" && <PostalCodeLookup />}
       {activeSection !== "postalCost" && <PostalCost />}
       {activeSection !== "receivedLetterTracker" && <RecievedLetterTracker />}
       {activeSection !== "postStamp" && <PostalStamp />}
-      {activeSection !== "sendInquiry" && <SendInquiry />} */}
+      {activeSection !== "sendInquiry" && <SendInquiry />}
 
       <Footer />
     </div>
