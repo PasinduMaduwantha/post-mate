@@ -102,16 +102,16 @@ function CustomerDetails({currentCustomer}) {
                     ) : (
                         <Typography>Last Name: </Typography>
                     )}
-                    {currentCustomer.userName ? (
-                        <Typography>Username: {currentCustomer.userName}</Typography>
+                    {currentCustomer.username ? (
+                        <Typography>Username: {currentCustomer.username}</Typography>
                     ) : (
                         <Typography>Username: </Typography>
                     )}
-                    {currentCustomer.contactNumber ? (
+                    {/* {currentCustomer.contactNumber ? (
                         <Typography>Password: {currentCustomer.password}</Typography>
                     ) : (
                         <Typography>Password: </Typography>
-                    )}
+                    )} */}
                     {currentCustomer.email ? (
                         <Typography>Email: {currentCustomer.email}</Typography>
                     ) : (

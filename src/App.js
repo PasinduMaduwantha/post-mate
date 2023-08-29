@@ -38,8 +38,8 @@ function App() {
         </Route>
         <Route path="/register" element={<Register />}>
         </Route>
-        {/* <Route path="/home" element={<UserHome />}>
-        </Route> */}
+        <Route path="/home" element={<UserHome />}>
+        </Route>
         <Route path="/admin/dashboard" element={<AdminDashBoard />}>
         </Route>
         <Route path="/about" element={<About />}>

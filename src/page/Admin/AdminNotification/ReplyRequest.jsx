@@ -11,6 +11,8 @@ import {Box, Stack, Typography} from "@mui/material";
 import axios from "../../../API/axios";
 
 export default function ReplyRequest({open, setOpen, currentCustomer}) {
+    console.log(currentCustomer);
+    console.log(currentCustomer.userName)
     const handleClickOpen = () => {
         setOpen(true);
     };
@@ -25,10 +27,11 @@ export default function ReplyRequest({open, setOpen, currentCustomer}) {
 
     const getFreshModel = () => ({
         userID: currentCustomer ? currentCustomer._id : "",
-        userName: "",
+        userName: currentCustomer ? currentCustomer.userName :"",
         senderAddress: "",
         isReply: true,
-        message: "",
+        hasLetter: true,
+        message: "You have a letter",
     });
 
     const {values, setValues, handleInputChange} = useForm(getFreshModel);
@@ -50,7 +53,7 @@ export default function ReplyRequest({open, setOpen, currentCustomer}) {
                 <DialogTitle>Reply to Request</DialogTitle>
                 <DialogContent>
                     <Stack marginTop={2} spacing={2} direction={"column"} width={500}>
-                        <Stack spacing={2} direction={"row"}>
+                        {/* <Stack spacing={2} direction={"row"}> */}
                             <TextField
                                 id='outlined-basic'
                                 label='User ID'
@@ -68,11 +71,11 @@ export default function ReplyRequest({open, setOpen, currentCustomer}) {
                                 id='outlined-basic'
                                 label='User Name'
                                 variant='outlined'
-                                value={currentCustomer ? currentCustomer.userName : values.userName}
+                                value={currentCustomer ? currentCustomer.userName : ""}
                                 name='userName'
                                 onChange={handleInputChange}
                             />
-                        </Stack>
+                        {/* </Stack> */}
                         <TextField
                             id='outlined-basic'
                             label='Sender Address'

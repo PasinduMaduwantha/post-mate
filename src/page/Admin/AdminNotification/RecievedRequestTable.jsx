@@ -21,6 +21,7 @@ import axios from "../../../API/axios";
 function ReceivedRequestTable() {
     const [open, setOpen] = useState(false);
     const [newRequests, setNewRequests] = useState([]);
+    const [thisCustomer, setThisCustomer] = useState([null]);
     const [isReplied, setIsReplied] = useState(false);
 
     useEffect(() => {
@@ -54,6 +55,16 @@ function ReceivedRequestTable() {
             console.error("Error rejecting request:", error);
         }
     };
+
+    const handleReplyRequest = async (requestId) => {
+        try {
+            await axios.put(`/api/requests/reply/${requestId}`);
+            // Handle success or update UI accordingly
+        } catch (error) {
+            console.error("Error replying request:", error);
+        }
+    };
+
 
     const columns = useMemo(
         () => [
@@ -101,19 +112,26 @@ function ReceivedRequestTable() {
                 header: "Reply",
                 size: 50,
                 Cell: ({cell, row}) => {
-                    const reply = row.original.requestAccepted;
+                    const reply = row.original.requestReplied;
                     setIsReplied(reply);
 
                     return (
                         <>
-                            {reply &&(
+                            {!reply &&(
                                 <Button 
-                                onClick={() => setOpen(true)} variant='contained'>
+                                onClick={() => {
+                                    setOpen(true);
+                                    setThisCustomer(row.original);
+                                    // handleReplyRequest(row.original._id)
+                                    // console.log(thisCustomer);
+                                }} variant='contained'
+                                
+                                >
                                     Send
                                 </Button>
                                 
                             )}
-                            {!reply && (<Button  variant="contained">Replied</Button>)}
+                            {reply && (<Button  variant="contained">Replied</Button>)}
                         </>
                     );
                 },
@@ -124,7 +142,7 @@ function ReceivedRequestTable() {
 
     return (
         <>
-            <ReplyRequest open={open} setOpen={setOpen} currentCustomer={newRequests}/>
+            <ReplyRequest open={open} setOpen={setOpen} currentCustomer={thisCustomer}/>
             <MaterialReactTable columns={columns} data={newRequests}/>
         </>
     );
