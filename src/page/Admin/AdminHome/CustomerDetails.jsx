@@ -4,6 +4,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import {useEffect, useState} from "react";
 import UpdateCustomerForm from "./UpdateCustomerForm";
+import axios from "../../../API/axios";
 
 function CustomerDetails({currentCustomer}) {
     const [open, setOpen] = useState(false);
@@ -11,6 +12,12 @@ function CustomerDetails({currentCustomer}) {
     useEffect(() => {
         setCustomer((prev) => customer);
     }, [currentCustomer]);
+
+    const handleDelete = () => {
+            axios.delete(`/api/users/${currentCustomer._id}`).then((res) => {
+                console.log(res);
+            });
+    }
 
     return (
         <>
@@ -71,8 +78,8 @@ function CustomerDetails({currentCustomer}) {
                     <IconButton onClick={() => setOpen(true)}>
                         <EditIcon/>
                     </IconButton>
-                    <IconButton>
-                        <DeleteIcon/>
+                    <IconButton onClick={handleDelete}>
+                        <DeleteIcon />
                     </IconButton>
                 </Stack>
 
