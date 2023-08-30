@@ -7,6 +7,7 @@ import ReplyRequest from "./ReplyRequest";
 import CustomerDetails from "../AdminHome/CustomerDetails";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import InqueryModal from "./InqueryModal";
+import ReplyInquery from "./ReplyInquery";
 
 const dummyRequests = [
     {
@@ -162,7 +163,7 @@ function PreviousRequestTable() {
                     Inquires
                 </Typography>
                 <Stack spacing={2} direction={"row"}>
-                    <ReplyRequest open={open} setOpen={setOpen} currentCustomer={thisCustomer}/>
+                    <ReplyInquery open={open} setOpen={setOpen} currentCustomer={thisCustomer}/>
                     <MaterialReactTable columns={columns} data={newRequests}/>
                     <InqueryModal open={openModal} setOpen={setOpenModal} currentCustomer={thisCustomer}/>
                 </Stack>
