@@ -215,10 +215,15 @@ const AuthForm = () => {
   const [Varient, setVarient] = useState("LOGIN");
   const [isLoading, setIsLoading] = useState(false);
 
+  function isValidEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  }
+
   const onSubmit = () => {
     if (
       values.username !== "" &&
-      values.email !== "" &&
+      isValidEmail(values.email) &&
       values.password === values.confirmPassword
     ) {
       navigate("/signUpForm", { state: values });
@@ -290,9 +295,11 @@ const AuthForm = () => {
                     type='email'
                     variant='outlined'
                     onChange={handleInputChange}
-                    error={values.email === ""}
+                    error={!isValidEmail(values.email)}
                     required
-                    helperText={values.email === "" ? "Email required" : ""}
+                    helperText={
+                      !isValidEmail(values.email) ? "Email invalid" : ""
+                    }
                   />
                 </Stack>
                 <Stack spacing={2} direction={"row"}>
