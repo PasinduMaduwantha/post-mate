@@ -18,12 +18,37 @@ import frame from "../../images/Frame.png";
 import axios from "../../API/axios";
 import { toast } from "react-hot-toast";
 import mailSent from "../../images/mcs.png";
-
+import React, { useState, useEffect } from "react";
+import { set } from "react-hook-form";
 
 const Contact = () => {
+  const [username, setUsername] = useState("");
+
+  useEffect(() => {
+    const userJSON = localStorage.getItem("user");
+    
+    if (userJSON) {
+      console.log("User JSON:")
+      try {
+        // Parse the JSON string into a JavaScript object
+        const userObject = JSON.parse(userJSON);
+        
+          // Access the username property
+          const userUsername = userObject.username;  
+          // Set the username in the state
+          setUsername(userUsername);
+        } catch (error) {
+          console.error("Error parsing user JSON:", error);
+        }
+      } 
+      console.log(username);
+      setValues(getFreshModel)
+}, [username]);
+
+
 
   const getFreshModel = () => ({
-    userName: "",
+    userName: username,
     address: "",
     message: "",
   });

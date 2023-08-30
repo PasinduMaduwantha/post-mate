@@ -1,11 +1,13 @@
 import "./AuthForm.css";
 import { useState , useContext} from "react";
-import { Box, Button, Link, Stack, TextField, Typography } from "@mui/material";
+import { Box, Button, Link, Stack, TextField, Typography ,AppBar} from "@mui/material";
 import { Navigate, Link as RouterLink, useNavigate } from "react-router-dom";
 import useForm from "../../Hooks/useForm";
 import { toast } from "react-hot-toast";
 import axios from '../../API/axios'
 import UserContext from "../../userContext";
+import logo from "../../images/logo.png";
+import Footer from "../Footer/Footer";
 
 function LoginForm() {
   const [isLoading, setIsLoading] = useState(false)
@@ -48,8 +50,18 @@ function LoginForm() {
   };
   return (
     <>
+
       <div className='auth-background'>
+    <AppBar
+      sx={{ marginBottom: 2, zIndex: (theme) => theme.zIndex.drawer + 1 }}
+      style={{ background: "#EFE7FA" }}
+      position='fixed'
+      elevation={0}
+    >
+      <img style={{ maxWidth: 120 }} src={logo} />
+    </AppBar>
         <Box
+          sx={{ marginTop: 15 }}
           borderColor={"#0001E4"}
           bgcolor={"white"}
           borderRadius={2}
@@ -114,6 +126,7 @@ function LoginForm() {
           </Stack>
         </Box>
       </div>
+        <Footer />
     </>
   );
 }

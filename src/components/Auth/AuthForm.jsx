@@ -186,8 +186,10 @@ import Input from "../Inputs/input";
 import { useCallback, useState, useRef, useEffect } from "react";
 import { SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { Box, Button, Stack, TextField, Typography } from "@mui/material";
+import { Box, Button, Stack, TextField, Typography, AppBar } from "@mui/material";
 import useForm from "../../Hooks/useForm";
+import logo from "../../images/logo.png";
+import Footer from "../Footer/Footer";
 
 import "./AuthForm.css";
 
@@ -215,8 +217,18 @@ const AuthForm = () => {
 
 
   return (
+    <>
     <div className='auth-background'>
-      <Box width={"100%"} bgcolor={"#131485"} borderRadius={2} padding={4}>
+      <AppBar
+      sx={{ marginBottom: 2, zIndex: (theme) => theme.zIndex.drawer + 1 }}
+      style={{ background: "#EFE7FA" }}
+      position='fixed'
+      elevation={0}
+    >
+      <img style={{ maxWidth: 120 }} src={logo} />
+    </AppBar>
+
+      <Box marginTop={15} width={"100%"} bgcolor={"#131485"} borderRadius={2} padding={4}>
         <Box
           borderColor={"#0001E4"}
           bgcolor={"white"}
@@ -293,6 +305,8 @@ const AuthForm = () => {
         </Box>
       </Box>
     </div>
+    <Footer />
+    </>
   );
 };
 

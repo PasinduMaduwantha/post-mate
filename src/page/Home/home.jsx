@@ -13,6 +13,10 @@ import "./home.css";
 import axios from "../../API/axios"
 import { toast } from "react-hot-toast";
 import useForm from "../../Hooks/useForm";
+import LoginMessageSection from "../LoginMessageSection/LoginMessageSection";
+import Footer from "../../components/Footer/Footer";
+import AppBar from "@mui/material/AppBar";
+import logo from "../../images/logo.png";
 
 
 
@@ -50,10 +54,19 @@ export default function Home() {
 
   return (
     <>
+    <AppBar
+      sx={{ marginBottom: 2, zIndex: (theme) => theme.zIndex.drawer + 1 }}
+      style={{ background: "#EFE7FA" }}
+      position='fixed'
+      elevation={0}
+    >
+      <img style={{ maxWidth: 120 }} src={logo} />
+    </AppBar>
       {/* <NavBar isUser={true} /> */}
-      <div className='home-background'>
-        <div className='home-background-wrap'>
-          <AuthForm />
+      {/* <div className='home-background'> */}
+        {/* <div className='home-background-wrap'> */}
+          {/* <AuthForm /> */}
+          <LoginMessageSection />
           <Stack direction={"column"}>
         <Typography
           padding={2}
@@ -63,7 +76,7 @@ export default function Home() {
           marginBottom={2}
           bgcolor={" #F2590033"}
           borderRadius={2}
-          variant='h6'
+          variant='h4'
         >
           Who We Are
         </Typography>
@@ -73,13 +86,20 @@ export default function Home() {
           alignItems='center'
           spacing={2}
         >
-          <Typography width={"50%"}>
+          <Stack direction={"column"} spacing={2}>
+          <Typography marginLeft={10} variant={"h6"} width={"50%"}>
             Experience efficient and reliable mail services tailored to your
-            needs at our trusted post service . Experience efficient and
+            needs at our trusted post service . 
+            </Typography>
+
+            <Typography marginLeft={4} variant={"h6"} width={"50%"}>
+
+            Experience efficient and
             reliable mail services tailored to your needs at our trusted post
             service .Experience efficient and reliable mail services tailored.
           </Typography>
-          <img width={400} src={stampCollection} alt='' />
+          </Stack>
+          <img width={"100%"} src={stampCollection} alt='' />
         </Stack>
       </Stack>
       <Stack direction={"column"}>
@@ -91,7 +111,7 @@ export default function Home() {
           marginBottom={2}
           bgcolor={" #F2590033"}
           borderRadius={2}
-          variant='h6'
+          variant='h4'
         >
           Our Services
         </Typography>
@@ -145,7 +165,7 @@ export default function Home() {
         <Typography color={"#131485"} variant='h4'>
           Contact Us
         </Typography>
-        <Typography>If you want to contact us, leave a message</Typography>
+        <Typography variant='h6'>If you want to contact us, leave a message</Typography>
         <Stack
           borderRadius={2}
           borderColor={"#131485"}
@@ -210,14 +230,14 @@ export default function Home() {
 
           <img
             style={{ marginLeft: 50, borderRadius: 20 }}
-            width={300}
+            width={400}
             src={mailSent}
           />
         </Stack>
       </Stack>
-        </div>
-      </div>
-      {/* <Footer /> */}
+        {/* </div> */}
+      {/* </div> */}
+      <Footer />
     </>
   );
 }
