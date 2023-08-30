@@ -11,7 +11,7 @@ import axios from "../../../API/axios";
 import { set } from "react-hook-form";
 import {useState} from "react";
 
-export default function ReplyRequest({open, setOpen, currentCustomer}) {
+export default function ReplyInquery({open, setOpen, currentCustomer}) {
     const [username, setUsername] = useState("");
     console.log(currentCustomer);
 
@@ -28,7 +28,7 @@ export default function ReplyRequest({open, setOpen, currentCustomer}) {
         userName: currentCustomer?.userName || "",
         senderAddress: "",
         isReply: true,
-        hasLetter: true,
+        hasLetter: false,
         message: "You have a letter",
     })
 
@@ -37,14 +37,6 @@ export default function ReplyRequest({open, setOpen, currentCustomer}) {
     console.log("start values", values);
 
     const onSubmit = async () => {
-        setValues({...values,
-            userID: currentCustomer ? currentCustomer._id : "",
-            userName: currentCustomer ? currentCustomer.userName : "default user",
-            isReply: true, 
-            hasLetter: true
-        });
-        
-        if(values.isReply && values.hasLetter && values.userID && values.userName){
         try {
             console.log(values);
             // Send form data to API
@@ -54,7 +46,6 @@ export default function ReplyRequest({open, setOpen, currentCustomer}) {
             console.error("Error sending notification:", error);
             // Handle error or show error message
         }
-    }
     };
 
     return (
