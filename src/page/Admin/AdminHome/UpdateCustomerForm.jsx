@@ -23,10 +23,10 @@ export default function UpdateCustomerForm({open, setOpen, currentCustomer}) {
     const getFreshModel = () => ({
         firstName: "",
         lastName: "",
-        userName: "",
+        username: "",
         password: "",
         email: "",
-        nearbyPostOffice: "",
+        nearByPostOffice: "",
         domainName: "",
         nationalIDNumber: "",
         permanentAddress: "",
@@ -43,6 +43,7 @@ export default function UpdateCustomerForm({open, setOpen, currentCustomer}) {
 
     const onSubmit = async () => {
         try {
+            console.log(values);
             // Send form data to API
             await axios.put(`/api/users/${values._id}`, values);
             handleClose(); // Close the dialog on successful submission
@@ -57,6 +58,7 @@ export default function UpdateCustomerForm({open, setOpen, currentCustomer}) {
             <Dialog fullWidth open={open} onClose={handleClose}>
                 <DialogTitle>Edit Customer</DialogTitle>
                 <DialogContent>
+                    {/*{console.log(currentCustomer)}*/}
                     <Stack marginTop={2} spacing={2} direction={"column"} width={500}>
                         <Stack spacing={2} direction={"row"}>
                             <TextField
@@ -80,7 +82,7 @@ export default function UpdateCustomerForm({open, setOpen, currentCustomer}) {
                             id='outlined-basic'
                             label='Username'
                             variant='outlined'
-                            value={values.userName}
+                            value={values.username}
                             name='userName'
                             onChange={handleInputChange}
                         />
@@ -96,7 +98,7 @@ export default function UpdateCustomerForm({open, setOpen, currentCustomer}) {
                             id='outlined-basic'
                             label='Nearby Post Office'
                             variant='outlined'
-                            value={values.nearbyPostOffice}
+                            value={values.nearByPostOffice}
                             name='nearbyPostOffice'
                             onChange={handleInputChange}
                         />
@@ -112,7 +114,7 @@ export default function UpdateCustomerForm({open, setOpen, currentCustomer}) {
                             id='outlined-basic'
                             label='National ID Number'
                             variant='outlined'
-                            value={values.nationalIDNumber}
+                            value={values.nationalIdNumber}
                             name='nationalIDNumber'
                             onChange={handleInputChange}
                         />

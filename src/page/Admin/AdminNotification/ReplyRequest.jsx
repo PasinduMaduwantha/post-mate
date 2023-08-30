@@ -32,12 +32,15 @@ export default function ReplyRequest({open, setOpen, currentCustomer}) {
         isReply: true,
         hasLetter: true,
         message: "You have a letter",
+        requestAccepted: "pending",
+        requestReplied: false,
     });
 
     const {values, setValues, handleInputChange} = useForm(getFreshModel);
 
     const onSubmit = async () => {
         try {
+            console.log(values);
             // Send form data to API
             await axios.post("/api/notifications", values);
             handleClose(); // Close the dialog on successful submission
