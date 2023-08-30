@@ -6,7 +6,7 @@ import axios from "../../../API/axios";
 function AdminSendNotification() {
 
   const handleClose = () => {
-    setValues({});
+    setValues({getFreshModel});
 };
 
   const getFreshModel = () => ({

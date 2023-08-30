@@ -10,19 +10,19 @@ import { useNavigate } from "react-router";
 export default function ServiceCard({ title, description, imageUrl }) {
   const navigate = useNavigate();
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 545 }}>
       <CardMedia sx={{ height: 140 }} image={imageUrl} title={title} />
       <CardContent>
         <Typography gutterBottom variant='h5' component='div'>
           {title}
         </Typography>
-        <Typography variant='body2' color='text.secondary'>
+        <Typography variant='h7' color='text.secondary'>
           {description}
         </Typography>
       </CardContent>
       <CardActions>
         <Button size='small'>Share</Button>
-        <Button onClick={() => navigate("/services")} size='small'>
+        <Button onClick={() => navigate("/login")} size='small'>
           Learn More
         </Button>
       </CardActions>

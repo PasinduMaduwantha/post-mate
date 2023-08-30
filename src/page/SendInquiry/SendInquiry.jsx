@@ -11,7 +11,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import postOffice from "../../images/Rectangle 35.png";
 import frame from "../../images/Frame.png";
 import axios from "../../API/axios";
@@ -19,8 +19,32 @@ import { toast } from "react-hot-toast";
 import useForm from "../../Hooks/useForm";
 
 function SendInquiry() {
+  const [username, setUsername] = useState("");
+
+  useEffect(() => {
+    const userJSON = localStorage.getItem("user");
+    
+    if (userJSON) {
+      console.log("User JSON:")
+      try {
+        // Parse the JSON string into a JavaScript object
+        const userObject = JSON.parse(userJSON);
+        
+          // Access the username property
+          const userUsername = userObject.username;  
+          // Set the username in the state
+          setUsername(userUsername);
+        } catch (error) {
+          console.error("Error parsing user JSON:", error);
+        }
+      } 
+      console.log(username);
+      setValues(getFreshModel)
+
+}, [username]);
+
   const getFreshModel = () => ({
-    userName: "",
+    userName: username,
     address: "",
     phoneNumber:"",
     message: "",
@@ -28,6 +52,16 @@ function SendInquiry() {
 
   const { values, setValues, errors, setErrors, handleInputChange } =
     useForm(getFreshModel);
+
+
+    
+
+  // useEffect(() => {
+  //   if(username){
+  //     fetchnotifications(username);
+  //   }
+    
+  // }, [username]);
 
 
     const onSendClick = () => {
@@ -47,10 +81,6 @@ function SendInquiry() {
           console.error('Error during login:', error);
           toast.error('Something went wrong .');
           })
-
-     
-
-
     
     };
 

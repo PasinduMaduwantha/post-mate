@@ -20,12 +20,12 @@ export default function AddCustomerForm({open, setOpen}) {
     };
 
     const getFreshModel = () => ({
-        firstname: "",
-        lastname: "",
+        firstName: "",
+        lastName: "",
         username: "",
         password: "12345",
         email: "",
-        nearbyPostOffice: "",
+        nearByPostOffice: "",
         domainName: "",
         nationalIdNumber: "",
         permanentAddress: "",
@@ -92,8 +92,8 @@ export default function AddCustomerForm({open, setOpen}) {
                             id='outlined-basic'
                             label='Nearby Post Office'
                             variant='outlined'
-                            value={values.nearbyPostOffice}
-                            name='nearbyPostOffice'
+                            value={values.nearByPostOffice}
+                            name='nearByPostOffice'
                             onChange={handleInputChange}
                         />
                         <TextField

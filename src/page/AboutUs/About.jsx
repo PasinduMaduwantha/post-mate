@@ -28,7 +28,9 @@ const About = () => {
         >
           <Typography width={"50%"}>
             Experience efficient and reliable mail services tailored to your
-            needs at our trusted post service . Experience efficient and
+            needs at our trusted post service . 
+            
+            Experience efficient and
             reliable mail services tailored to your needs at our trusted post
             service .Experience efficient and reliable mail services tailored.
           </Typography>

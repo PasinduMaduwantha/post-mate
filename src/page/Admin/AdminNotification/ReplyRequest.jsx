@@ -9,6 +9,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import useForm from "../../../Hooks/useForm";
 import {Box, Stack, Typography} from "@mui/material";
 import axios from "../../../API/axios";
+import { set } from "react-hook-form";
 
 export default function ReplyRequest({open, setOpen, currentCustomer}) {
     console.log(currentCustomer);
@@ -27,7 +28,7 @@ export default function ReplyRequest({open, setOpen, currentCustomer}) {
 
     const getFreshModel = () => ({
         userID: currentCustomer ? currentCustomer._id : "",
-        userName: currentCustomer ? currentCustomer.userName :"",
+        userName: currentCustomer ? currentCustomer.userName : "default user",
         senderAddress: "",
         isReply: true,
         hasLetter: true,
@@ -54,7 +55,7 @@ export default function ReplyRequest({open, setOpen, currentCustomer}) {
                 <DialogContent>
                     <Stack marginTop={2} spacing={2} direction={"column"} width={500}>
                         {/* <Stack spacing={2} direction={"row"}> */}
-                            <TextField
+                            {/* <TextField
                                 id='outlined-basic'
                                 label='User ID'
                                 variant='outlined'
@@ -66,12 +67,12 @@ export default function ReplyRequest({open, setOpen, currentCustomer}) {
                                 }
                                 name='userID'
                                 onChange={handleInputChange}
-                            />
+                            /> */}
                             <TextField
                                 id='outlined-basic'
                                 label='User Name'
                                 variant='outlined'
-                                value={currentCustomer ? currentCustomer.userName : ""}
+                                value={values.userName}
                                 name='userName'
                                 onChange={handleInputChange}
                             />
