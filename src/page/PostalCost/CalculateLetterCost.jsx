@@ -10,10 +10,10 @@ import {
   Typography,
 } from "@mui/material";
 import boxPackage from "../../images/3268388_720 1.png";
-import { weights_costs, updateWeightCost } from './postalCostModel';
+// import { weights_costs, updateWeightCost } from './postalCostModel';
+import axios from "../../API/axios";
 
-
-import { useState } from "react";
+import { useState , useEffect} from "react";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -58,8 +58,48 @@ const MenuProps = {
 
 
 function CalculateLetterCost() {
-  const [costs, setCosts] = useState([]);
-  const[weights, setWeight] = useState([]);
+  const [cost, setCost] = useState();
+  const[weights, setWeight] = useState();
+  const [weights_costs, setWeightCost] = useState([]);
+
+  const [postalCosts, setPostalCosts] = useState([{}]);
+
+  useEffect(() => {
+    const fetchPostInfo = async () => {
+      console.log("Fetching info")
+      try {
+        const response = await axios.get("/api/postalcost/"); // Using relative path
+        setPostalCosts(response.data);
+        console.log(postalCosts)
+
+      } catch (error) {
+        console.error("Error fetching requests:", error);
+      }
+
+    };
+
+    fetchPostInfo();
+  }, []);
+
+  // useEffect(() => {
+    // const fetchPostalCost = async () => {
+    //   console.log("Fetching info")
+    //   try {
+    //     const response = await axios.get(`/api/postalcost/find/${weights}`); // Using relative path
+    //     console.log(costs)
+
+    //   } catch (error) {
+    //     console.error("Error fetching requests:", error);
+    //   }
+
+    // };
+
+  //   fetchPostInfo();
+  // }, []);
+
+
+
+
   
   const totalCost = Object.keys(weights_costs).map((city) => (
     <MenuItem key={city} value={city}>
@@ -71,12 +111,15 @@ function CalculateLetterCost() {
     // updateWeightCost("0-250g", "40000.00");
     const selectedValue = event.target.value;
     setWeight(selectedValue);
+    console.log("selected value", weights);
 
-    if (weights_costs[weights]) {
-      setCosts(weights_costs[weights]);
-    } else {
-      setCosts('');
-    }
+    postalCosts.find((postalcost) => {
+      if (postalcost.weight === selectedValue) {
+        setCost(postalcost.cost);
+        console.log("cost", cost);
+      }
+    });
+
   };
 
   return (
@@ -110,6 +153,13 @@ function CalculateLetterCost() {
                   {name}
                 </MenuItem>
               ))} */}
+              {postalCosts.map((postalcost) => (
+                <MenuItem key={postalcost.weight} value={postalcost.weight}>
+                  {postalcost.weight}
+                </MenuItem>
+              ))}
+            
+
               <MenuItem></MenuItem>
               {totalCost}
             </Select>
@@ -119,9 +169,11 @@ function CalculateLetterCost() {
             sx={{ m: 1, width: 300 }}
             id='outlined-basic'
             label='Postal Cost'
+            disabled={true}
+            InputLabelProps={{shrink:cost}}
             variant='outlined'
             onAbort={handleWeightChange}
-            value={costs}
+            value={cost}
           />
           <Typography marginTop={10} width={400}>
             Dimention: No letter may exceed 610 mm in length, 300 mm in width

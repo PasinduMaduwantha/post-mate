@@ -75,7 +75,7 @@ export default function AdminLayout() {
                   <ListItemIcon>
                     
                     <Link  to='/'>
-                      <LogoutIcon sx={{ color: "white" }}
+                      <LogoutIcon 
                       onClick= {() => {
                         localStorage.removeItem("user");
                       }}
