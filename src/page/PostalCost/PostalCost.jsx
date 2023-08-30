@@ -13,7 +13,7 @@ function PostalCost() {
         direction={"column"}
       >
         <Stack
-          direction='row'
+          direction='column'
           justifyContent='center'
           alignItems='center'
           spacing={2}
@@ -24,8 +24,16 @@ function PostalCost() {
             alignItems='center'
             spacing={2}
           >
-            <Typography color={"#131485"} variant='h4'>
-              Postal Cost
+            <Typography
+              marginBottom={2}
+              bgcolor={"#D9D9D9"}
+              paddingLeft={50}
+              paddingRight={50}
+              paddingTop={2}
+              paddingBottom={2}
+              borderRadius={2} 
+              color={"#131485"} variant='h4'>
+                    Postal Cost
             </Typography>
             <Typography>
               find your postal cost according to letters' height and weight.
@@ -33,7 +41,7 @@ function PostalCost() {
           </Stack>
           <img width={400} src={postman} alt='' />
         </Stack>
-        <Box height={20} bgcolor={"#131485"}></Box>
+        <Box height={10} bgcolor={"#131485"}></Box>
 
         <Stack
           direction='column'
@@ -86,6 +94,7 @@ function PostalCost() {
           <CalculateLetterCost />
         </Stack>
       </Stack>
+      <Box marginBottom={6} height={20} bgcolor={"#131485"} ></Box>
     </>
   );
 }

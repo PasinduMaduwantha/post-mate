@@ -9,6 +9,7 @@ import {
   Stack,
   TextField,
   Typography,
+  Box,
 } from "@mui/material";
 import React, { useState } from "react";
 import postOffice from "../../images/Rectangle 35.png";
@@ -254,7 +255,27 @@ function PostalCodeLookup() {
         alignItems='center'
         spacing={2}
       >
-        <Typography color={"#131485"} variant='h4'>
+        {/* <Stack direction={"column"}> */}
+        {/* <Typography
+          marginBottom={2}
+          padding={1}
+          bgcolor={"#D9D9D9"}
+          width={"100%"}
+          variant='h6'
+          color={"#131485"}
+          borderRadius={2}
+        > */}
+          {/* Inquires */}
+        {/* </Typography> */}
+        <Typography 
+        marginBottom={2}
+        bgcolor={"#D9D9D9"}
+        paddingLeft={50}
+        paddingRight={50}
+        paddingTop={2}
+        paddingBottom={2}
+        borderRadius={2} 
+        color={"#131485"} variant='h4'>
           Postal Code Lookup
         </Typography>
         <Typography>
@@ -375,6 +396,7 @@ function PostalCodeLookup() {
         </Stack>
         <img src={frame} />
       </Stack>
+      <Box marginBottom={6} height={20} bgcolor={"#131485"} ></Box>
     </>
   );
 }

@@ -50,8 +50,8 @@ function App() {
         </Route>
         <Route path="/notifications" element={<Notifications />}>
         </Route>
-        <Route path="/services" element={<UserHome />}>
-        </Route>
+        {/* <Route path="/services" element={<UserHome />}>
+        </Route> */}
         {/* <Route path="/home/postalCodeLookup" element={<PostalCodeLookup/>}></Route>
         <Route path="/home/postalCost" element={<PostalCost/>}></Route>
         <Route path="/home/receivedLetterTracker" element={<RecievedLetterTracker/>}></Route>

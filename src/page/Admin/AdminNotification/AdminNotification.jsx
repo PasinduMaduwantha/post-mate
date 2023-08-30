@@ -2,6 +2,7 @@ import { Stack, Typography } from "@mui/material";
 import ReceivedRequestTable from "./RecievedRequestTable";
 import PreviousRequestTable from "./PreviousRequestTable";
 import AdminSendNotification from "./AdminSendNotification";
+import AdminFeedbackTable from "./AdminFeddbackTable"
 
 function AdminNotification() {
   return (
@@ -25,6 +26,9 @@ function AdminNotification() {
         <Stack spacing={2} direction={"row"}>
           <PreviousRequestTable />
           <AdminSendNotification />
+        </Stack>
+        <Stack spacing={2} direction={"row"}>
+          <AdminFeedbackTable />
         </Stack>
       </Stack>
     </>

@@ -6,6 +6,7 @@ import {
   MenuItem,
   OutlinedInput,
   Select,
+  Box,
   Stack,
   TextField,
   Typography,
@@ -62,7 +63,15 @@ function SendInquiry() {
         alignItems='center'
         spacing={2}
       >
-        <Typography color={"#131485"} variant='h4'>
+        <Typography 
+        marginBottom={2}
+        bgcolor={"#D9D9D9"}
+        paddingLeft={50}
+        paddingRight={50}
+        paddingTop={2}
+        paddingBottom={2}
+        borderRadius={2} 
+        color={"#131485"} variant='h4'>
           Send Inquiry
         </Typography>
         <Typography>
@@ -123,6 +132,7 @@ function SendInquiry() {
         </Stack>
         <img style={{ paddingTop: 10 }} src={frame} />
       </Stack>
+      <Box marginBottom={6} height={20} bgcolor={"#131485"} ></Box>
     </>
   );
 }
