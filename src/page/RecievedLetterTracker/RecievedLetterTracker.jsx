@@ -42,12 +42,12 @@ function RecievedLetterTracker() {
               setValues(getFreshModel)
     
           } else {
-              toast.error('Invalid credentials. Please try again.');
+              toast.error('Cannot add the request.');
           }
           })
           .catch(error => {
-          console.error('Error during login:', error);
-          toast.error('Something went wrong during login.');
+          console.error('Error during adding the request:', error);
+          toast.error('Something went wrong during adding request.');
           })
 
      
