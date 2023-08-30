@@ -14,9 +14,9 @@ function CustomerDetails({currentCustomer}) {
     }, [currentCustomer]);
 
     const handleDelete = () => {
-            axios.delete(`/api/users/${currentCustomer._id}`).then((res) => {
-                console.log(res);
-            });
+        axios.delete(`/api/users/${currentCustomer._id}`).then((res) => {
+            console.log(res);
+        });
     }
 
     return (
@@ -80,7 +80,7 @@ function CustomerDetails({currentCustomer}) {
                         <EditIcon/>
                     </IconButton>
                     <IconButton onClick={handleDelete}>
-                        <DeleteIcon />
+                        <DeleteIcon/>
                     </IconButton>
                 </Stack>
 

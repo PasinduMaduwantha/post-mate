@@ -3,12 +3,10 @@ import TextField from "@mui/material/TextField";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import useForm from "../../../Hooks/useForm";
-import {Box, Stack, Typography} from "@mui/material";
+import {Stack} from "@mui/material";
 import axios from "../../../API/axios";
-import { set } from "react-hook-form";
 import {useState} from "react";
 
 export default function ReplyInquery({open, setOpen, currentCustomer}) {
@@ -54,15 +52,15 @@ export default function ReplyInquery({open, setOpen, currentCustomer}) {
                 <DialogTitle>Reply to Request</DialogTitle>
                 <DialogContent>
                     <Stack marginTop={2} spacing={2} direction={"column"} width={500}>
-                            {console.log("aa", values)}
-                            <TextField
-                                id='outlined-basic'
-                                label='User Name'
-                                variant='outlined'
-                                value={values.userName}
-                                name='userName'
-                                onChange={handleInputChange}
-                            />
+                        {console.log("aa", values)}
+                        <TextField
+                            id='outlined-basic'
+                            label='User Name'
+                            variant='outlined'
+                            value={values.userName}
+                            name='userName'
+                            onChange={handleInputChange}
+                        />
                         <TextField
                             id='outlined-basic'
                             label='Sender Address'

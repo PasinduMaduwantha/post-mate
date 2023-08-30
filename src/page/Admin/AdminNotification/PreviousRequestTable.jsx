@@ -1,10 +1,8 @@
 import {Button, IconButton, Stack, Typography} from "@mui/material";
 import {MaterialReactTable} from "material-react-table";
-import {useMemo, useState, useEffect} from "react";
+import {useEffect, useMemo, useState} from "react";
 
 import axios from '../../../API/axios'
-import ReplyRequest from "./ReplyRequest";
-import CustomerDetails from "../AdminHome/CustomerDetails";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import InqueryModal from "./InqueryModal";
 import ReplyInquery from "./ReplyInquery";

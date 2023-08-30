@@ -1,4 +1,4 @@
-import {Button, Stack, Typography} from "@mui/material";
+import {Button, Stack} from "@mui/material";
 import {MaterialReactTable} from "material-react-table";
 import {useEffect, useMemo, useState} from "react";
 import ReplyRequest from "./ReplyRequest";
@@ -13,7 +13,7 @@ import axios from "../../../API/axios";
 //       dummyRequests.push(res.data[i]);
 //     }
 //   } 
-    
+
 // }).catch((err) => {
 //   console.log(err);
 // })
@@ -118,22 +118,22 @@ function ReceivedRequestTable() {
 
                     return (
                         <>
-                            {!reply &&(
-                                <Button 
-                                onClick={() => {
-                                    setOpen(true);
-                                    // console.log("row ", row)
-                                    setThisCustomer(row.original);
-                                    // handleReplyRequest(row.original._id)
-                                    // console.log("thisCustomer", thisCustomer);
-                                }} variant='contained'
-                                
+                            {!reply && (
+                                <Button
+                                    onClick={() => {
+                                        setOpen(true);
+                                        // console.log("row ", row)
+                                        setThisCustomer(row.original);
+                                        // handleReplyRequest(row.original._id)
+                                        // console.log("thisCustomer", thisCustomer);
+                                    }} variant='contained'
+
                                 >
                                     Send
                                 </Button>
-                                
+
                             )}
-                            {reply && (<Button  variant="contained">Replied</Button>)}
+                            {reply && (<Button variant="contained">Replied</Button>)}
                         </>
                     );
                 },
@@ -146,7 +146,7 @@ function ReceivedRequestTable() {
         <>
             {console.log("passing", thisCustomer)}
             <ReplyRequest open={open} setOpen={setOpen} currentCustomer={thisCustomer}/>
-            
+
             <MaterialReactTable columns={columns} data={newRequests}/>
         </>
     );

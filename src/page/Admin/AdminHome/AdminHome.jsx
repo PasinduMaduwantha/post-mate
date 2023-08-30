@@ -1,6 +1,6 @@
 import {Stack, Typography} from "@mui/material";
 import axios from 'axios';
-import React, {useState, useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import CustomersTable from "./CustomersTable";
 
 function AdminHome() {

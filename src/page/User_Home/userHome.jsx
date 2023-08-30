@@ -1,6 +1,5 @@
-import React, { useState } from "react";
-import { Button, Stack,Box } from "@mui/material";
-import { Outlet } from "react-router";
+import React, {useState} from "react";
+import {Button, Stack} from "@mui/material";
 
 import Footer from "../../components/Footer/Footer";
 import NavBar from "../../components/NavBar/NavBar";
@@ -17,100 +16,100 @@ import ConfirmationNumberIcon from "@mui/icons-material/ConfirmationNumber";
 import SendIcon from "@mui/icons-material/Send";
 
 const UserHome = () => {
-  const [activeSection, setActiveSection] = useState("postalCodeLookup");
+    const [activeSection, setActiveSection] = useState("postalCodeLookup");
 
-  const goToSection = (section) => {
-    setActiveSection(section);
-  };
+    const goToSection = (section) => {
+        setActiveSection(section);
+    };
 
-  //   const gotoPostalCodeLookup = (section) => {
-  //     setActiveSection(section);
-  //   };
+    //   const gotoPostalCodeLookup = (section) => {
+    //     setActiveSection(section);
+    //   };
 
-  //   const gotoPostalCost = (section) => {
-  //     setActiveSection(section);
-  //   };
+    //   const gotoPostalCost = (section) => {
+    //     setActiveSection(section);
+    //   };
 
-  //   const gotoReceivedLetterTracker = (section) => {
-  //     setActiveSection(section);
-  //   };
+    //   const gotoReceivedLetterTracker = (section) => {
+    //     setActiveSection(section);
+    //   };
 
-  //   const gotoPostStamp = (section) => {
-  //     setActiveSection(section);
-  //   };
+    //   const gotoPostStamp = (section) => {
+    //     setActiveSection(section);
+    //   };
 
-  //   const gotoSendInquiry = (section) => {
-  //     setActiveSection(section);
-  //   };
+    //   const gotoSendInquiry = (section) => {
+    //     setActiveSection(section);
+    //   };
 
-  return (
-    <div>
-      <NavBar />
-      <div>
-        <div style={{ marginTop: "100px" }}>
-          <Stack
-            direction='row'
-            justifyContent='center'
-            alignItems='center'
-            spacing={2}
-            marginBottom={2}
-          >
-            <Button
-              variant='contained'
-              color={
-                activeSection === "postalCodeLookup" ? "primary" : "secondary"
-              }
-              startIcon={<NumbersIcon />}
-              onClick={() => goToSection("postalCodeLookup")}
-            >
-              Postal Code Lookup
-            </Button>
-            <Button
-              variant='contained'
-              color={activeSection === "postalCost" ? "primary" : "secondary"}
-              startIcon={<SavingsIcon />}
-              onClick={() => goToSection("postalCost")}
-            >
-              Postal Cost
-            </Button>
-            <Button
-              variant='contained'
-              color={
-                activeSection === "receivedLetterTracker"
-                  ? "primary"
-                  : "secondary"
-              }
-              startIcon={<EmailIcon />}
-              onClick={() => goToSection("receivedLetterTracker")}
-            >
-              Received Letter Tracker
-            </Button>
-            <Button
-              variant='contained'
-              color={activeSection === "postStamp" ? "primary" : "secondary"}
-              startIcon={<ConfirmationNumberIcon />}
-              onClick={() => goToSection("postStamp")}
-            >
-              Post Stamp
-            </Button>
-            <Button
-              variant='contained'
-              color={activeSection === "sendInquiry" ? "primary" : "secondary"}
-              startIcon={<SendIcon />}
-              onClick={() => goToSection("sendInquiry")}
-            >
-              Send Inquiry
-            </Button>
-          </Stack>
-        </div>
+    return (
+        <div>
+            <NavBar/>
+            <div>
+                <div style={{marginTop: "100px"}}>
+                    <Stack
+                        direction='row'
+                        justifyContent='center'
+                        alignItems='center'
+                        spacing={2}
+                        marginBottom={2}
+                    >
+                        <Button
+                            variant='contained'
+                            color={
+                                activeSection === "postalCodeLookup" ? "primary" : "secondary"
+                            }
+                            startIcon={<NumbersIcon/>}
+                            onClick={() => goToSection("postalCodeLookup")}
+                        >
+                            Postal Code Lookup
+                        </Button>
+                        <Button
+                            variant='contained'
+                            color={activeSection === "postalCost" ? "primary" : "secondary"}
+                            startIcon={<SavingsIcon/>}
+                            onClick={() => goToSection("postalCost")}
+                        >
+                            Postal Cost
+                        </Button>
+                        <Button
+                            variant='contained'
+                            color={
+                                activeSection === "receivedLetterTracker"
+                                    ? "primary"
+                                    : "secondary"
+                            }
+                            startIcon={<EmailIcon/>}
+                            onClick={() => goToSection("receivedLetterTracker")}
+                        >
+                            Received Letter Tracker
+                        </Button>
+                        <Button
+                            variant='contained'
+                            color={activeSection === "postStamp" ? "primary" : "secondary"}
+                            startIcon={<ConfirmationNumberIcon/>}
+                            onClick={() => goToSection("postStamp")}
+                        >
+                            Post Stamp
+                        </Button>
+                        <Button
+                            variant='contained'
+                            color={activeSection === "sendInquiry" ? "primary" : "secondary"}
+                            startIcon={<SendIcon/>}
+                            onClick={() => goToSection("sendInquiry")}
+                        >
+                            Send Inquiry
+                        </Button>
+                    </Stack>
+                </div>
 
-        {activeSection === "postalCodeLookup" && <PostalCodeLookup />}
-        {activeSection === "postalCost" && <PostalCost />}
-        {activeSection === "receivedLetterTracker" && <RecievedLetterTracker />}
-        {activeSection === "postStamp" && <PostalStamp />}
-        {activeSection === "sendInquiry" && <SendInquiry />}
-      </div>
-      {/* <Button
+                {activeSection === "postalCodeLookup" && <PostalCodeLookup/>}
+                {activeSection === "postalCost" && <PostalCost/>}
+                {activeSection === "receivedLetterTracker" && <RecievedLetterTracker/>}
+                {activeSection === "postStamp" && <PostalStamp/>}
+                {activeSection === "sendInquiry" && <SendInquiry/>}
+            </div>
+            {/* <Button
           href="/home/postalCodeLookup"
           onClick={gotoPostalCodeLookup}>Postal Code Lookup</Button>
         <Button href="/home/postalCost" 
@@ -125,20 +124,20 @@ const UserHome = () => {
           onClick={gotoSendInquiry}>Send Inquiry</Button>
       
         </div>*/}
-      {/* <Box marginTop={6} height={20} bgcolor={"#131485"} ></Box> */}
-      {activeSection !== "postalCodeLookup" && <PostalCodeLookup />}
-      {/* <Box marginTop={4} height={20} bgcolor={"#131485"}></Box> */}
-      {activeSection !== "postalCost" && <PostalCost />}
-      {/* <Box marginTop={4} height={20} bgcolor={"#131485"}></Box> */}
-      {activeSection !== "receivedLetterTracker" && <RecievedLetterTracker />}
-      {/* <Box marginTop={4} height={20} bgcolor={"#131485"}></Box> */}
-      {activeSection !== "postStamp" && <PostalStamp />}
-      {/* <Box marginTop={4} height={20} bgcolor={"#131485"}></Box> */}
-      {activeSection !== "sendInquiry" && <SendInquiry />}
+            {/* <Box marginTop={6} height={20} bgcolor={"#131485"} ></Box> */}
+            {activeSection !== "postalCodeLookup" && <PostalCodeLookup/>}
+            {/* <Box marginTop={4} height={20} bgcolor={"#131485"}></Box> */}
+            {activeSection !== "postalCost" && <PostalCost/>}
+            {/* <Box marginTop={4} height={20} bgcolor={"#131485"}></Box> */}
+            {activeSection !== "receivedLetterTracker" && <RecievedLetterTracker/>}
+            {/* <Box marginTop={4} height={20} bgcolor={"#131485"}></Box> */}
+            {activeSection !== "postStamp" && <PostalStamp/>}
+            {/* <Box marginTop={4} height={20} bgcolor={"#131485"}></Box> */}
+            {activeSection !== "sendInquiry" && <SendInquiry/>}
 
-      <Footer />
-    </div>
-  );
+            <Footer/>
+        </div>
+    );
 };
 
 export default UserHome;

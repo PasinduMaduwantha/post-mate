@@ -4,10 +4,9 @@ import TextField from "@mui/material/TextField";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import useForm from "../../../Hooks/useForm";
-import {Box, Stack, Typography} from "@mui/material";
+import {Stack} from "@mui/material";
 import axios from "../../../API/axios";
 
 export default function AddCustomerForm({open, setOpen}) {

@@ -11,48 +11,48 @@
     outline-offset: 0.125rem;
     width: 100%;
     background-color: #60a5fa
-  }
-  
-  /* Disabled styles */
-  .custom-button.disabled {
+}
+
+/* Disabled styles */
+.custom-button.disabled {
     opacity: 0.5;
     cursor: default;
-  }
-  
-  /* Full width styles */
-  .custom-button.full-width {
+}
+
+/* Full width styles */
+.custom-button.full-width {
     width: 100%;
-  }
-  
-  /* Secondary button text color */
-  .custom-button.secondary {
+}
+
+/* Secondary button text color */
+.custom-button.secondary {
     color: #111827; /* text-gray-900 equivalent */
-  }
-  
-  /* Danger button styles */
-  .custom-button.danger {
+}
+
+/* Danger button styles */
+.custom-button.danger {
     background-color: #f87171; /* bg-rose-500 equivalent */
-  }
-  
-  .custom-button.danger:hover,
-  .custom-button.danger:focus-visible {
+}
+
+.custom-button.danger:hover,
+.custom-button.danger:focus-visible {
     background-color: #fecaca; /* bg-rose-600 equivalent */
     outline: 2px solid #fecaca; /* focus-visible:outline-rose-600 equivalent */
-  }
-  
-  /* Primary button styles */
-  .custom-button.primary {
+}
+
+/* Primary button styles */
+.custom-button.primary {
     background-color: #60a5fa; /* bg-sky-500 equivalent */
-  }
-  
-  .custom-button.primary:hover,
-  .custom-button.primary:focus-visible {
+}
+
+.custom-button.primary:hover,
+.custom-button.primary:focus-visible {
     background-color: #93c5fd; /* bg-sky-600 equivalent */
     outline: 2px solid #93c5fd; /* focus-visible:outline-sky-600 equivalent */
-  }
-  
-  /* Text color for primary button */
-  .custom-button.primary .text {
+}
+
+/* Text color for primary button */
+.custom-button.primary .text {
     color: #ffffff; /* text-white equivalent */
-  }
+}
   

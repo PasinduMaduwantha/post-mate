@@ -1,29 +1,29 @@
 import {
-  Button,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  OutlinedInput,
-  Select,
-  Stack,
-  TextField,
-  Typography,
+    Button,
+    FormControl,
+    InputLabel,
+    MenuItem,
+    OutlinedInput,
+    Select,
+    Stack,
+    TextField,
+    Typography,
 } from "@mui/material";
 import boxPackage from "../../images/3268388_720 1.png";
 // import { weights_costs, updateWeightCost } from './postalCostModel';
 import axios from "../../API/axios";
 
-import { useState , useEffect} from "react";
+import {useEffect, useState} from "react";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
 const MenuProps = {
-  PaperProps: {
-    style: {
-      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 250,
+    PaperProps: {
+        style: {
+            maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+            width: 250,
+        },
     },
-  },
 };
 
 // const weights_costs = {
@@ -55,33 +55,31 @@ const MenuProps = {
 // }
 
 
-
-
 function CalculateLetterCost() {
-  const [cost, setCost] = useState();
-  const[weights, setWeight] = useState();
-  const [weights_costs, setWeightCost] = useState([]);
+    const [cost, setCost] = useState();
+    const [weights, setWeight] = useState();
+    const [weights_costs, setWeightCost] = useState([]);
 
-  const [postalCosts, setPostalCosts] = useState([{}]);
+    const [postalCosts, setPostalCosts] = useState([{}]);
 
-  useEffect(() => {
-    const fetchPostInfo = async () => {
-      console.log("Fetching info")
-      try {
-        const response = await axios.get("/api/postalcost/"); // Using relative path
-        setPostalCosts(response.data);
-        console.log(postalCosts)
+    useEffect(() => {
+        const fetchPostInfo = async () => {
+            console.log("Fetching info")
+            try {
+                const response = await axios.get("/api/postalcost/"); // Using relative path
+                setPostalCosts(response.data);
+                console.log(postalCosts)
 
-      } catch (error) {
-        console.error("Error fetching requests:", error);
-      }
+            } catch (error) {
+                console.error("Error fetching requests:", error);
+            }
 
-    };
+        };
 
-    fetchPostInfo();
-  }, []);
+        fetchPostInfo();
+    }, []);
 
-  // useEffect(() => {
+    // useEffect(() => {
     // const fetchPostalCost = async () => {
     //   console.log("Fetching info")
     //   try {
@@ -94,95 +92,93 @@ function CalculateLetterCost() {
 
     // };
 
-  //   fetchPostInfo();
-  // }, []);
+    //   fetchPostInfo();
+    // }, []);
 
 
+    const totalCost = Object.keys(weights_costs).map((city) => (
+        <MenuItem key={city} value={city}>
+            {city}
+        </MenuItem>
+    ));
 
+    const handleWeightChange = (event) => {
+        // updateWeightCost("0-250g", "40000.00");
+        const selectedValue = event.target.value;
+        setWeight(selectedValue);
+        console.log("selected value", weights);
 
-  
-  const totalCost = Object.keys(weights_costs).map((city) => (
-    <MenuItem key={city} value={city}>
-      {city}
-    </MenuItem>
-  ));
-  
-  const handleWeightChange = (event) => {
-    // updateWeightCost("0-250g", "40000.00");
-    const selectedValue = event.target.value;
-    setWeight(selectedValue);
-    console.log("selected value", weights);
+        postalCosts.find((postalcost) => {
+            if (postalcost.weight === selectedValue) {
+                setCost(postalcost.cost);
+                console.log("cost", cost);
+            }
+        });
 
-    postalCosts.find((postalcost) => {
-      if (postalcost.weight === selectedValue) {
-        setCost(postalcost.cost);
-        console.log("cost", cost);
-      }
-    });
+    };
 
-  };
-
-  return (
-    <>
-      <Stack
-        justifyContent='center'
-        alignItems='center'
-        spacing={2}
-        direction={"row"}
-        border={2}
-        borderRadius={2}
-        padding={2}
-        marginBottom={2}
-      >
-        <img width={300} src={boxPackage} alt='' />
-        <Stack direction={"column"} >
-          <FormControl sx={{ m: 1, width: 300 }}>
-            <InputLabel id='demo-multiple-name-label'>
-              Select letter weight range
-            </InputLabel>
-            <Select
-              labelId='demo-multiple-name-label'
-              id='demo-multiple-name'
-              value={weights}
-              onChange={handleWeightChange}
-              input={<OutlinedInput label='Select letter weight range' />}
-              MenuProps={MenuProps}
+    return (
+        <>
+            <Stack
+                justifyContent='center'
+                alignItems='center'
+                spacing={2}
+                direction={"row"}
+                border={2}
+                borderRadius={2}
+                padding={2}
+                marginBottom={2}
             >
-              {/* {names.map((name) => (
+                <img width={300} src={boxPackage} alt=''/>
+                <Stack direction={"column"}>
+                    <FormControl sx={{m: 1, width: 300}}>
+                        <InputLabel id='demo-multiple-name-label'>
+                            Select letter weight range
+                        </InputLabel>
+                        <Select
+                            labelId='demo-multiple-name-label'
+                            id='demo-multiple-name'
+                            value={weights}
+                            onChange={handleWeightChange}
+                            input={<OutlinedInput label='Select letter weight range'/>}
+                            MenuProps={MenuProps}
+                        >
+                            {/* {names.map((name) => (
                 <MenuItem key={name} value={name}>
                   {name}
                 </MenuItem>
               ))} */}
-              {postalCosts.map((postalcost) => (
-                <MenuItem key={postalcost.weight} value={postalcost.weight}>
-                  {postalcost.weight}
-                </MenuItem>
-              ))}
-            
+                            {postalCosts.map((postalcost) => (
+                                <MenuItem key={postalcost.weight} value={postalcost.weight}>
+                                    {postalcost.weight}
+                                </MenuItem>
+                            ))}
 
-              <MenuItem></MenuItem>
-              {totalCost}
-            </Select>
-          </FormControl>
-          <Button sx={{ m: 1, width: 300 }} variant='contained' onClick={handleWeightChange}>Find Postal Cost</Button>
-          <TextField
-            sx={{ m: 1, width: 300 }}
-            id='outlined-basic'
-            label='Postal Cost'
-            disabled={true}
-            InputLabelProps={{shrink:cost}}
-            variant='outlined'
-            onAbort={handleWeightChange}
-            value={cost}
-          />
-          <Typography marginTop={10} width={400}>
-            Dimention: No letter may exceed 610 mm in length, 300 mm in width
-            and 300 mm in depth.
-          </Typography>
-        </Stack>
-      </Stack>
-    </>
-  );
+
+                            <MenuItem></MenuItem>
+                            {totalCost}
+                        </Select>
+                    </FormControl>
+                    <Button sx={{m: 1, width: 300}} variant='contained' onClick={handleWeightChange}>Find Postal
+                        Cost</Button>
+                    <TextField
+                        sx={{m: 1, width: 300}}
+                        id='outlined-basic'
+                        label='Postal Cost'
+                        disabled={true}
+                        InputLabelProps={{shrink: cost}}
+                        variant='outlined'
+                        onAbort={handleWeightChange}
+                        value={cost}
+                    />
+                    <Typography marginTop={10} width={400}>
+                        Dimention: No letter may exceed 610 mm in length, 300 mm in width
+                        and 300 mm in depth.
+                    </Typography>
+                </Stack>
+            </Stack>
+        </>
+    );
 }
 
 export default CalculateLetterCost;

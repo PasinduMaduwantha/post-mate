@@ -1,14 +1,9 @@
 import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-import useForm from "../../../Hooks/useForm";
-import {Box, Stack, Typography} from "@mui/material";
-import axios from "../../../API/axios";
-import {set} from "react-hook-form";
+import {Stack, Typography} from "@mui/material";
 import {useState} from "react";
 
 export default function InqueryModal({open, setOpen, currentCustomer}) {
