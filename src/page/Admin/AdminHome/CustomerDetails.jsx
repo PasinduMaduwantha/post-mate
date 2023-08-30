@@ -21,11 +21,12 @@ function CustomerDetails({currentCustomer}) {
 
     return (
         <>
-            {customer && (
+            {console.log(currentCustomer)}
+            {currentCustomer && (
                 <UpdateCustomerForm
                     open={open}
                     setOpen={setOpen}
-                    currentCustomer={customer}
+                    currentCustomer={currentCustomer}
                 />
             )}
             <Stack
@@ -117,8 +118,8 @@ function CustomerDetails({currentCustomer}) {
                     ) : (
                         <Typography>Email: </Typography>
                     )}
-                    {currentCustomer.nearbyPostOffice ? (
-                        <Typography>Nearby Post Office: {currentCustomer.nearbyPostOffice}</Typography>
+                    {currentCustomer.nearByPostOffice ? (
+                        <Typography>Nearby Post Office: {currentCustomer.nearByPostOffice}</Typography>
                     ) : (
                         <Typography>Nearby Post Office: </Typography>
                     )}
@@ -127,8 +128,8 @@ function CustomerDetails({currentCustomer}) {
                     ) : (
                         <Typography>Domain Name: </Typography>
                     )}
-                    {currentCustomer.nationalIDNumber ? (
-                        <Typography>National ID Number: {currentCustomer.nationalIDNumber}</Typography>
+                    {currentCustomer.nationalIdNumber ? (
+                        <Typography>National ID Number: {currentCustomer.nationalIdNumber}</Typography>
                     ) : (
                         <Typography>National ID Number: </Typography>
                     )}
