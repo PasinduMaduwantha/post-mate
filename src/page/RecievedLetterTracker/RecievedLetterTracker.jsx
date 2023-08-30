@@ -11,7 +11,7 @@ import {
   Typography,
   Box,
 } from "@mui/material";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import postOffice from "../../images/Rectangle 35.png";
 import frame from "../../images/Frame.png";
 import mailSent from "../../images/Mail sent-pana 1.png";
@@ -21,8 +21,32 @@ import { toast } from "react-hot-toast";
 
 function RecievedLetterTracker() {
 
+  const [username, setUsername] = useState("");
+
+  useEffect(() => {
+    const userJSON = localStorage.getItem("user");
+    
+    if (userJSON) {
+      console.log("User JSON:")
+      try {
+        // Parse the JSON string into a JavaScript object
+        const userObject = JSON.parse(userJSON);
+        
+          // Access the username property
+          const userUsername = userObject.username;  
+          // Set the username in the state
+          setUsername(userUsername);
+        } catch (error) {
+          console.error("Error parsing user JSON:", error);
+        }
+      } 
+      console.log(username);
+      setValues(getFreshModel)
+
+}, [username]);
+
   const getFreshModel = () => ({
-    userName: "",
+    userName: username,
     senderAddress: "",
     message: "",
     requestAccepted: "pending"
@@ -33,7 +57,9 @@ function RecievedLetterTracker() {
 
 
     const onSendClick = () => {
+      setValues({...values, userName: username})
 
+      if(values.userName === username){
       axios.post('/api/requests', values)
       .then(response => {
               console.log(response)
@@ -49,11 +75,7 @@ function RecievedLetterTracker() {
           console.error('Error during adding the request:', error);
           toast.error('Something went wrong during adding request.');
           })
-
-     
-
-
-    
+        }
     };
   
 
