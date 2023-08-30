@@ -65,7 +65,7 @@ function PreviousRequestTable() {
     useEffect(() => {
         const fetchRequests = async () => {
             try {
-                const response = await axios.get("/api/inqueries"); // Using relative path
+                const response = await axios.get("/api/userfeedback"); // Using relative path
                 setNewRequests(response.data);
             } catch (error) {
                 console.error("Error fetching requests:", error);
@@ -94,11 +94,6 @@ function PreviousRequestTable() {
         size: 50,
       },
       {
-        accessorKey: "phoneNumber", //access nested data with dot notation
-        header: "Phone Number",
-        size: 50,
-      },
-      {
         accessorKey: "createdAt", //normal accessorKey
         header: "Created Date",
         size: 50,
@@ -119,7 +114,7 @@ function PreviousRequestTable() {
           color={"#131485"}
           borderRadius={2}
         >
-          Inquires
+          User Feedback
         </Typography>
         <MaterialReactTable columns={columns} data={newRequests} />
       </Stack>

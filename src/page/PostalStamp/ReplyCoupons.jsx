@@ -1,4 +1,4 @@
-import { Stack, Typography } from "@mui/material";
+import { Stack, Typography,Box } from "@mui/material";
 import stampCollection from "../../images/Sri-Lanka-2016-10-07-Flowers-of-SriLanka-Impatiens-elongata-Stamp-Rs-1 1.png";
 
 function ReplyCoupons() {
@@ -41,6 +41,7 @@ function ReplyCoupons() {
           <img src={stampCollection} alt='' />
         </Stack>
       </Stack>
+      <Box marginBottom={6} height={20} bgcolor={"#131485"} ></Box>
     </>
   );
 }

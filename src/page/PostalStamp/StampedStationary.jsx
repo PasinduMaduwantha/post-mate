@@ -11,7 +11,9 @@ function StampedStationary() {
         spacing={2}
         padding={2}
       >
-        <Typography color={"#131485"} variant='h6'>
+        <Typography 
+        
+        color={"#131485"} variant='h6'>
           Stamped Stationery
         </Typography>
         <img width={700} src={stampPrice} alt='' />

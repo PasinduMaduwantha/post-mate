@@ -11,6 +11,7 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
+import { Link } from "react-router-dom";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
 import NavBar from "../../components/NavBar/NavBar";
@@ -72,7 +73,15 @@ export default function AdminLayout() {
               <ListItem key={text} disablePadding>
                 <ListItemButton sx={{ color: "white" }}>
                   <ListItemIcon>
-                    <LogoutIcon sx={{ color: "white" }} />
+                    
+                    <Link  to='/'>
+                      <LogoutIcon sx={{ color: "white" }}
+                      onClick= {() => {
+                        localStorage.removeItem("user");
+                      }}
+                      fontSize="large"  />
+                    </Link>
+                    {/* <LogoutIcon sx={{ color: "white" }} /> */}
                   </ListItemIcon>
                   <ListItemText primary={text} />
                 </ListItemButton>

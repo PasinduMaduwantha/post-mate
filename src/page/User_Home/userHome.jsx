@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Stack } from "@mui/material";
+import { Button, Stack,Box } from "@mui/material";
 import { Outlet } from "react-router";
 
 import Footer from "../../components/Footer/Footer";
@@ -125,11 +125,15 @@ const UserHome = () => {
           onClick={gotoSendInquiry}>Send Inquiry</Button>
       
         </div>*/}
-
+      {/* <Box marginTop={6} height={20} bgcolor={"#131485"} ></Box> */}
       {activeSection !== "postalCodeLookup" && <PostalCodeLookup />}
+      {/* <Box marginTop={4} height={20} bgcolor={"#131485"}></Box> */}
       {activeSection !== "postalCost" && <PostalCost />}
+      {/* <Box marginTop={4} height={20} bgcolor={"#131485"}></Box> */}
       {activeSection !== "receivedLetterTracker" && <RecievedLetterTracker />}
+      {/* <Box marginTop={4} height={20} bgcolor={"#131485"}></Box> */}
       {activeSection !== "postStamp" && <PostalStamp />}
+      {/* <Box marginTop={4} height={20} bgcolor={"#131485"}></Box> */}
       {activeSection !== "sendInquiry" && <SendInquiry />}
 
       <Footer />

@@ -1,4 +1,4 @@
-import {Button, Stack} from "@mui/material";
+import {Button, Stack, Typography} from "@mui/material";
 import {MaterialReactTable} from "material-react-table";
 import {useEffect, useMemo, useState} from "react";
 import ReplyRequest from "./ReplyRequest";
@@ -143,6 +143,7 @@ function ReceivedRequestTable() {
     return (
         <>
             <ReplyRequest open={open} setOpen={setOpen} currentCustomer={thisCustomer}/>
+            
             <MaterialReactTable columns={columns} data={newRequests}/>
         </>
     );

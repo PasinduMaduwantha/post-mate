@@ -14,14 +14,14 @@ import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import logo from "../../images/logo.png";
 import { Link } from "react-router-dom";
-import { Notifications } from "@mui/icons-material";
+import { Logout, Notifications } from "@mui/icons-material";
 
 const pages = [ "About Us", "Services", "Contact Us", "Help"];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+const settings = ["Profile", "Account", "Dashboard"];
 
 const pageToUrlMap = {
-  // "Home": "/home",
-  "Services": "/services",
+  "Services": "/home",
+  // "Services": "/services",
   "About Us": "/about",
   "Contact Us": "/contact",
   "Help": "/help",
@@ -56,7 +56,7 @@ function NavBar( ) {
     >
       <Container maxWidth='xl'>
         <Toolbar disableGutters>
-          <Link to='/'>
+          <Link to='/home'>
             <img style={{ maxWidth: 120 }} src={logo} />
           </Link>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
@@ -85,7 +85,15 @@ function NavBar( ) {
               <Notifications fontSize="large"  />
             </Link>
           </Box>
-
+          <Box sx={{ flexGrow: 0.3 }}>
+            <Link to='/'>
+              <Logout 
+              onClick= {() => {
+                localStorage.removeItem("user");
+              }}
+              fontSize="large"  />
+            </Link>
+          </Box>
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title='Open settings'>
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>

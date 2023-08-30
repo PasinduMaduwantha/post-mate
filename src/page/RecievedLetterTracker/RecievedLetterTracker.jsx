@@ -9,6 +9,7 @@ import {
   Stack,
   TextField,
   Typography,
+  Box,
 } from "@mui/material";
 import React, { useState } from "react";
 import postOffice from "../../images/Rectangle 35.png";
@@ -65,7 +66,15 @@ function RecievedLetterTracker() {
         alignItems='center'
         spacing={2}
       >
-        <Typography color={"#131485"} variant='h4'>
+        <Typography 
+        marginBottom={2}
+        bgcolor={"#D9D9D9"}
+        paddingLeft={50}
+        paddingRight={50}
+        paddingTop={2}
+        paddingBottom={2}
+        borderRadius={2} 
+        color={"#131485"} variant='h4'>
           Received Letter Tracker
         </Typography>
         <Typography>
@@ -123,6 +132,7 @@ function RecievedLetterTracker() {
           <img width={400} src={mailSent} />
         </Stack>
       </Stack>
+      <Box marginBottom={6} height={20} bgcolor={"#131485"} ></Box>
     </>
   );
 }

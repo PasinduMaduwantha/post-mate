@@ -25,7 +25,6 @@ const Contact = () => {
   const getFreshModel = () => ({
     userName: "",
     address: "",
-    phoneNumber:"",
     message: "",
   });
 
@@ -35,7 +34,7 @@ const Contact = () => {
 
     const onSendClick = () => {
 
-      axios.post('/api/inqueries', values)
+      axios.post('/api/userfeedback', values)
       .then(response => {
               console.log(response)
           if (response.status === 200) {
@@ -108,14 +107,14 @@ const Contact = () => {
               onChange={handleInputChange}
             />
 
-            <TextField
+            {/* <TextField
               id='outlined-basic'
               label='Phone Number'
               variant='outlined'
               name='phoneNumber'
               value={values.phoneNumber}
               onChange={handleInputChange}
-            />
+            /> */}
 
             <TextField
               id='outlined-basic'

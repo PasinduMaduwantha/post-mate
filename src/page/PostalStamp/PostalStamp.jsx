@@ -22,6 +22,14 @@ function PostalStamp() {
         >
           <Stack width={"50%"} direction={"column"}>
             <Typography
+            marginBottom={2}
+            bgcolor={"#D9D9D9"}
+            // paddingLeft={50}
+            // paddingRight={50}
+            // paddingTop={2}
+            // paddingBottom={2}
+            padding={2}
+            borderRadius={2} 
               alignItems='center'
               justifyContent='center'
               color={"#131485"}
