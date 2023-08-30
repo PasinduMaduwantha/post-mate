@@ -112,6 +112,7 @@ function ReceivedRequestTable() {
                 header: "Reply",
                 size: 50,
                 Cell: ({cell, row}) => {
+                    // console.log("row ", row, cell)
                     const reply = row.original.requestReplied;
                     setIsReplied(reply);
 
@@ -121,9 +122,10 @@ function ReceivedRequestTable() {
                                 <Button 
                                 onClick={() => {
                                     setOpen(true);
+                                    // console.log("row ", row)
                                     setThisCustomer(row.original);
                                     // handleReplyRequest(row.original._id)
-                                    // console.log(thisCustomer);
+                                    // console.log("thisCustomer", thisCustomer);
                                 }} variant='contained'
                                 
                                 >
@@ -142,6 +144,7 @@ function ReceivedRequestTable() {
 
     return (
         <>
+            {console.log("passing", thisCustomer)}
             <ReplyRequest open={open} setOpen={setOpen} currentCustomer={thisCustomer}/>
             
             <MaterialReactTable columns={columns} data={newRequests}/>
