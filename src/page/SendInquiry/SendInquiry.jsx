@@ -66,6 +66,9 @@ function SendInquiry() {
 
     const onSendClick = () => {
 
+      setValues({...values, userName: username})
+
+      if(values.userName === username){
       axios.post('/api/inqueries', values)
       .then(response => {
               console.log(response)
@@ -81,6 +84,8 @@ function SendInquiry() {
           console.error('Error during login:', error);
           toast.error('Something went wrong .');
           })
+
+        }
     
     };
 

@@ -21,14 +21,19 @@ function AdminSendNotification() {
 const {values, setValues, handleInputChange} = useForm(getFreshModel);
 
 const onSubmit = async () => {
-    try {
-        // Send form data to API
+
+  setValues({...values, isReply: true, hasLetter: true});
+
+  if(values.isReply && values.hasLetter){
+  try {
+    // Send form data to API
         await axios.post("/api/notifications", values);
         handleClose(); // Close the dialog on successful submission
     } catch (error) {
         console.error("Error sending notification:", error);
         // Handle error or show error message
     }
+  }
 };
 
   return (
@@ -63,6 +68,7 @@ const onSubmit = async () => {
                 id='outlined-basic'
                 label='Username'
                 variant='outlined'
+                InputLabelProps={{shrink:true}}
                 value={values.userName}
                 name='userName'
                 onChange={handleInputChange}
@@ -74,6 +80,7 @@ const onSubmit = async () => {
               variant='outlined'
               value={values.senderAddress}
               name='senderAddress'
+              InputLabelProps={{shrink:true}}
               onChange={handleInputChange}
             />
             <TextField
@@ -81,6 +88,7 @@ const onSubmit = async () => {
               label='Custom Message'
               variant='outlined'
               value={values.message}
+              InputLabelProps={{shrink:true}}
               name='customMessage'
               onChange={handleInputChange}
               multiline

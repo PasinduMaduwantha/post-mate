@@ -1,7 +1,29 @@
 import { Avatar, Stack, Typography } from "@mui/material";
 import { deepOrange } from "@mui/material/colors";
+import React, { useState, useEffect } from "react";
 
 function AdminSettings() {
+
+  const [user, setUser] = useState("");
+
+  useEffect(() => {
+    const userJSON = localStorage.getItem("user");
+    
+    if (userJSON) {
+      console.log("User JSON:")
+      try {
+          // Parse the JSON string into a JavaScript object
+          const userObject = JSON.parse(userJSON);
+      
+          // Set the username in the state
+          setUser(userObject);
+        } catch (error) {
+          console.error("Error parsing user JSON:", error);
+        }
+      } 
+      console.log(user);
+}, []);
+
   return (
     <>
       <Stack direction={"column"} spacing={2} padding={2}>
@@ -25,15 +47,17 @@ function AdminSettings() {
               Profile
             </Typography>
           </Stack>
-          <Typography color={"#131485"}>User Name : JohnDoe</Typography>
-          <Typography color={"#131485"}>User Id : 01552</Typography>
+          <Typography color={"#131485"}>First Name : {user.firstName||"John"}</Typography>
+          <Typography color={"#131485"}>Last Name : {user.lastName||"Doe"}</Typography>
+          
+          <Typography color={"#131485"}>User Name : {user.username || "johndoe"}</Typography>
+          {/* <Typography color={"#131485"}>User Id : 01552</Typography> */}
           <Typography color={"#131485"}>
-            Email Address : johndoe@postal.lk
+            Email Address : {user.email ||"johndoe@gmail.com"}
           </Typography>
-          <Typography color={"#131485"}>Contact Number : 0718527569</Typography>
-          <Typography color={"#131485"}>
+          {/* <Typography color={"#131485"}>
             Designation : Provincial Manager
-          </Typography>
+          </Typography> */}
         </Stack>
       </Stack>
     </>

@@ -40,6 +40,14 @@ export default function ReplyRequest({open, setOpen, currentCustomer}) {
     const {values, setValues, handleInputChange} = useForm(getFreshModel);
 
     const onSubmit = async () => {
+        setValues({...values,
+            userID: currentCustomer ? currentCustomer._id : "",
+            userName: currentCustomer ? currentCustomer.userName : "default user",
+            isReply: true, 
+            hasLetter: true
+        });
+        
+        if(values.isReply && values.hasLetter && values.userID && values.userName){
         try {
             console.log(values);
             // Send form data to API
@@ -49,6 +57,7 @@ export default function ReplyRequest({open, setOpen, currentCustomer}) {
             console.error("Error sending notification:", error);
             // Handle error or show error message
         }
+    }
     };
 
     return (
